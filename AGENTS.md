@@ -27,6 +27,12 @@ docker compose -f docker-compose.base44.yml up -d
 - `curl http://localhost:3000/` — serves the SPA (`index.html`).
 - All images are CDN URLs (Unsplash / Pexels) with width params; the hero
   image is local at `public/images/hero.jpg`.
+- Hero is a scroll-scrubbed video (`public/videos/hero-{desktop,mobile}.mp4`):
+  `src/sections/Hero.jsx` pins a 100vh sticky stage inside a ~350vh scroll
+  track and drives `video.currentTime` from scroll progress via rAF + lerp
+  (never `play()`). The MP4s are re-encoded for random-access seeking —
+  faststart + a keyframe every 0.5s + CRF 21/24 — see the header comment in
+  Hero.jsx before replacing them.
 
 ## Structure
 

@@ -93,6 +93,34 @@
   animation: heroImgIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
 }
 
+/* Scroll-driven hero: minimal loading treatment (no big spinner) */
+.hero-loader {
+  position: relative;
+  display: block;
+  height: 2px;
+  width: 140px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.18);
+}
+.hero-loader::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, #c5a059, transparent);
+  animation: heroLoader 1.2s ease-in-out infinite;
+}
+@keyframes heroLoader {
+  from {
+    transform: translateX(-140px);
+  }
+  to {
+    transform: translateX(140px);
+  }
+}
+
 /* Mobile menu items */
 @keyframes menuIn {
   from {
