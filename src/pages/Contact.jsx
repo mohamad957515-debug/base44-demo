@@ -17,17 +17,17 @@ function ContactForm() {
     return (
       <div className="flex flex-col items-center py-14 text-center">
         <CheckCircle2 size={48} className="text-gold" strokeWidth={1.5} />
-        <h3 className="mt-5 text-xl font-bold text-navy">Message received</h3>
+        <h3 className="mt-5 text-xl font-bold text-navy">پیام شما دریافت شد</h3>
         <p className="mt-2 max-w-sm text-sm text-ink/60">
-          Thank you for reaching out — one of our advisors will get back to you
-          within one business day.
+          ممنون که با ما در تماس هستید — یکی از مشاوران ما ظرف یک روز کاری
+          پاسخ‌تان را می‌دهد.
         </p>
         <button
           type="button"
           onClick={() => setSent(false)}
           className="btn-outline mt-7"
         >
-          Send another message
+          ارسال پیام دیگر
         </button>
       </div>
     );
@@ -44,52 +44,52 @@ function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="c-name" className="mb-2 block text-sm font-semibold text-navy">
-            Full name
+            نام و نام خانوادگی
           </label>
-          <input id="c-name" required placeholder="Jane Cooper" className="field" />
+          <input id="c-name" required placeholder="سارا محمدی" className="field" />
         </div>
         <div>
           <label htmlFor="c-email" className="mb-2 block text-sm font-semibold text-navy">
-            Email
+            ایمیل
           </label>
-          <input id="c-email" type="email" required placeholder="jane@example.com" className="field" />
+          <input id="c-email" type="email" required placeholder="sara@example.com" className="field" />
         </div>
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="c-phone" className="mb-2 block text-sm font-semibold text-navy">
-            Phone (optional)
+            تلفن (اختیاری)
           </label>
-          <input id="c-phone" type="tel" placeholder="(555) 000-0000" className="field" />
+          <input id="c-phone" type="tel" placeholder="۰۹۱۲ ۰۰۰ ۰۰۰۰" className="field" />
         </div>
         <div>
           <label htmlFor="c-subject" className="mb-2 block text-sm font-semibold text-navy">
-            I'm interested in
+            موضوع علاقه‌مندی
           </label>
           <select id="c-subject" className="field cursor-pointer">
-            <option>Buying a home</option>
-            <option>Selling a property</option>
-            <option>Investment opportunities</option>
-            <option>Property valuation</option>
-            <option>Something else</option>
+            <option>خرید خانه</option>
+            <option>فروش ملک</option>
+            <option>فرصت‌های سرمایه‌گذاری</option>
+            <option>ارزش‌گذاری ملک</option>
+            <option>موضوعی دیگر</option>
           </select>
         </div>
       </div>
       <div>
         <label htmlFor="c-message" className="mb-2 block text-sm font-semibold text-navy">
-          Message
+          پیام
         </label>
         <textarea
           id="c-message"
           rows={5}
           required
-          placeholder="Tell us a little about what you're looking for…"
+          placeholder="کمی درباره چیزی که می‌خواهید برای ما بنویسید…"
           className="field resize-none"
         />
       </div>
       <button type="submit" className="btn-primary w-full sm:w-auto">
         <Send size={15} />
-        Send Message
+        ارسال پیام
       </button>
     </form>
   );
@@ -98,24 +98,24 @@ function ContactForm() {
 const INFO = [
   {
     icon: Phone,
-    label: "Phone",
+    label: "تلفن",
     value: BRAND.phone,
     href: BRAND.phoneHref,
   },
   {
     icon: Mail,
-    label: "Email",
+    label: "ایمیل",
     value: BRAND.email,
     href: BRAND.emailHref,
   },
   {
     icon: MapPin,
-    label: "Office",
-    value: `${BRAND.address}, ${BRAND.address2}`,
+    label: "دفتر",
+    value: `${BRAND.address}، ${BRAND.address2}`,
   },
   {
     icon: Clock,
-    label: "Hours",
+    label: "ساعت کاری",
     value: BRAND.hours,
   },
 ];
@@ -129,13 +129,13 @@ export default function Contact() {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_50%_0%,rgba(21,52,87,0.9),transparent)]"
         />
         <div className="container-x relative text-center">
-          <p className="label-gold">Contact</p>
+          <p className="label-gold">تماس</p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Let's Start the Conversation
+            گفت‌وگو را آغاز کنیم
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-white/60">
-            Whether you're buying, selling, or exploring investments — we'd
-            love to hear from you.
+            خریدار، فروشنده یا سرمایه‌گذار — خوشحال می‌شویم صدایتان را
+            بشنویم.
           </p>
         </div>
       </section>
@@ -151,7 +151,7 @@ export default function Contact() {
                     <item.icon size={19} strokeWidth={1.8} />
                   </span>
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/40">
+                    <p className="text-xs font-bold text-ink/40">
                       {item.label}
                     </p>
                     {item.href ? (
@@ -171,10 +171,10 @@ export default function Contact() {
 
             <Reveal delay={240}>
               <div className="rounded-2xl bg-navy p-7 text-white shadow-card">
-                <p className="label-gold">Work with a specialist</p>
+                <p className="label-gold">با یک متخصص کار کنید</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/70">
-                  Every Horizon client is paired with a dedicated advisor from
-                  our team — no call centers, no hand-offs.
+                  هر مشتری هورایزن از میان تیم ما یک مشاور اختصاصی می‌گیرد —
+                  بدون مرکز تماس، بدون واسطه.
                 </p>
                 <div className="mt-5 flex items-center gap-3">
                   <div className="flex -space-x-3">
@@ -189,7 +189,8 @@ export default function Contact() {
                     ))}
                   </div>
                   <p className="text-xs text-white/60">
-                    Meet our team on the <span className="text-gold">home page</span>
+                    با تیم ما در <span className="text-gold">صفحه خانه</span>{" "}
+                    آشنا شوید
                   </p>
                 </div>
               </div>
@@ -200,10 +201,10 @@ export default function Contact() {
           <Reveal delay={120} className="lg:col-span-7">
             <div className="rounded-2xl bg-white p-6 shadow-card sm:p-10">
               <h2 className="text-2xl font-bold tracking-tight text-navy">
-                Send Us a Message
+                برای ما پیام بگذارید
               </h2>
               <p className="mt-2 text-sm text-ink/60">
-                We reply within one business day.
+                ظرف یک روز کاری پاسخ می‌دهیم.
               </p>
               <div className="mt-8">
                 <ContactForm />

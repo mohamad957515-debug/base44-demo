@@ -9,7 +9,7 @@ import {
   CalendarDays,
   Check,
   CheckCircle2,
-  ChevronRight,
+  ChevronLeft,
   Mail,
   MapPin,
   Phone,
@@ -22,7 +22,7 @@ import FavoriteButton from "../components/FavoriteButton";
 import Reveal from "../components/Reveal";
 import NotFound from "./NotFound";
 import { BRAND } from "../data/content";
-import { formatNumber, formatPrice } from "../lib/format";
+import { faNum, formatNumber, formatPrice } from "../lib/format";
 import {
   fetchPropertyBySlug,
   fetchSimilarProperties,
@@ -38,7 +38,7 @@ function SuccessMessage({ title, text, onDone }) {
       <h4 className="mt-4 text-lg font-bold text-navy">{title}</h4>
       <p className="mt-2 text-sm text-ink/60">{text}</p>
       <button type="button" onClick={onDone} className="btn-primary mt-6">
-        Done
+        انجام شد
       </button>
     </div>
   );
@@ -49,8 +49,8 @@ function ContactAgentForm({ property, onClose }) {
   if (sent)
     return (
       <SuccessMessage
-        title="Message sent"
-        text={`Thank you — our advisor will respond within one business day about ${property.name}.`}
+        title="پیام ارسال شد"
+        text={`ممنون — مشاور ما ظرف یک روز کاری درباره «${property.name}» پاسخ می‌دهد.`}
         onDone={onClose}
       />
     );
@@ -63,30 +63,30 @@ function ContactAgentForm({ property, onClose }) {
       className="space-y-4"
     >
       <div>
-        <label htmlFor="contact-name" className="sr-only">Full name</label>
-        <input id="contact-name" required placeholder="Full name" className="field" />
+        <label htmlFor="contact-name" className="sr-only">نام و نام خانوادگی</label>
+        <input id="contact-name" required placeholder="نام و نام خانوادگی" className="field" />
       </div>
       <div>
-        <label htmlFor="contact-email" className="sr-only">Email</label>
-        <input id="contact-email" type="email" required placeholder="Email address" className="field" />
+        <label htmlFor="contact-email" className="sr-only">ایمیل</label>
+        <input id="contact-email" type="email" required placeholder="ایمیل شما" className="field" />
       </div>
       <div>
-        <label htmlFor="contact-phone" className="sr-only">Phone (optional)</label>
-        <input id="contact-phone" type="tel" placeholder="Phone (optional)" className="field" />
+        <label htmlFor="contact-phone" className="sr-only">تلفن (اختیاری)</label>
+        <input id="contact-phone" type="tel" placeholder="تلفن (اختیاری)" className="field" />
       </div>
       <div>
-        <label htmlFor="contact-msg" className="sr-only">Message</label>
+        <label htmlFor="contact-msg" className="sr-only">پیام</label>
         <textarea
           id="contact-msg"
           rows={4}
           required
-          defaultValue={`Hello, I'd like more information about ${property.name} (${formatPrice(property.price)}).`}
+          defaultValue={`سلام، درباره «${property.name}» (${formatPrice(property.price)}) اطلاعات بیشتری می‌خواهم.`}
           className="field resize-none"
         />
       </div>
       <button type="submit" className="btn-primary w-full">
         <Mail size={15} />
-        Send Message
+        ارسال پیام
       </button>
     </form>
   );
@@ -97,8 +97,8 @@ function ViewingForm({ property, onClose }) {
   if (sent)
     return (
       <SuccessMessage
-        title="Viewing requested"
-        text={`We'll confirm your tour of ${property.name} by email shortly.`}
+        title="بازدید درخواست شد"
+        text={`به‌زودی تأیید بازدید از «${property.name}» را از طریق ایمیل دریافت می‌کنید.`}
         onDone={onClose}
       />
     );
@@ -111,32 +111,32 @@ function ViewingForm({ property, onClose }) {
       className="space-y-4"
     >
       <div>
-        <label htmlFor="viewing-name" className="sr-only">Full name</label>
-        <input id="viewing-name" required placeholder="Full name" className="field" />
+        <label htmlFor="viewing-name" className="sr-only">نام و نام خانوادگی</label>
+        <input id="viewing-name" required placeholder="نام و نام خانوادگی" className="field" />
       </div>
       <div>
-        <label htmlFor="viewing-email" className="sr-only">Email</label>
-        <input id="viewing-email" type="email" required placeholder="Email address" className="field" />
+        <label htmlFor="viewing-email" className="sr-only">ایمیل</label>
+        <input id="viewing-email" type="email" required placeholder="ایمیل شما" className="field" />
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label htmlFor="viewing-date" className="sr-only">Preferred date</label>
+          <label htmlFor="viewing-date" className="sr-only">تاریخ ترجیحی</label>
           <input id="viewing-date" type="date" required className="field" />
         </div>
         <div>
-          <label htmlFor="viewing-time" className="sr-only">Preferred time</label>
+          <label htmlFor="viewing-time" className="sr-only">ساعت ترجیحی</label>
           <select id="viewing-time" className="field cursor-pointer">
-            <option>10:00 AM</option>
-            <option>12:00 PM</option>
-            <option>2:00 PM</option>
-            <option>4:00 PM</option>
-            <option>6:00 PM</option>
+            <option>۱۰:۰۰</option>
+            <option>۱۲:۰۰</option>
+            <option>۱۴:۰۰</option>
+            <option>۱۶:۰۰</option>
+            <option>۱۸:۰۰</option>
           </select>
         </div>
       </div>
       <button type="submit" className="btn-primary w-full">
         <Calendar size={15} />
-        Request Viewing
+        درخواست بازدید
       </button>
     </form>
   );
@@ -171,7 +171,7 @@ export default function PropertyDetail() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center pt-[76px]">
-        <span className="h-10 w-10 animate-spin rounded-full border-2 border-navy/15 border-t-gold" aria-label="Loading property" />
+        <span className="h-10 w-10 animate-spin rounded-full border-2 border-navy/15 border-t-gold" aria-label="در حال بارگذاری ملک" />
       </div>
     );
   }
@@ -180,21 +180,21 @@ export default function PropertyDetail() {
 
   const agent = resolveAgent(property.agent);
   const specs = [
-    { icon: BedDouble, value: `${property.beds}`, label: "Bedrooms" },
-    { icon: Bath, value: `${property.baths}`, label: "Bathrooms" },
-    { icon: Ruler, value: `${formatNumber(property.sqft)}`, label: "Square Feet" },
-    { icon: Calendar, value: `${property.yearBuilt}`, label: "Year Built" },
+    { icon: BedDouble, value: faNum(property.beds), label: "خواب" },
+    { icon: Bath, value: faNum(property.baths), label: "حمام" },
+    { icon: Ruler, value: formatNumber(property.sqft), label: "فوت مربع" },
+    { icon: Calendar, value: faNum(property.yearBuilt), label: "سال ساخت" },
   ];
 
   return (
     <article className="bg-white">
       <div className="container-x pt-28 lg:pt-32">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs font-medium text-ink/50">
-          <Link to="/" className="transition-colors hover:text-navy">Home</Link>
-          <ChevronRight size={12} />
-          <Link to="/properties" className="transition-colors hover:text-navy">Properties</Link>
-          <ChevronRight size={12} />
+        <nav aria-label="مسیر صفحه" className="flex items-center gap-1.5 text-xs font-medium text-ink/50">
+          <Link to="/" className="transition-colors hover:text-navy">خانه</Link>
+          <ChevronLeft size={12} />
+          <Link to="/properties" className="transition-colors hover:text-navy">املاک</Link>
+          <ChevronLeft size={12} />
           <span className="text-navy">{property.name}</span>
         </nav>
 
@@ -206,17 +206,17 @@ export default function PropertyDetail() {
             {/* Title & price */}
             <div className="mt-10 flex flex-wrap items-start justify-between gap-6">
               <div>
-                <p className="label-gold">{property.type} · For Sale</p>
+                <p className="label-gold">{property.type} · برای فروش</p>
                 <h1 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
                   {property.name}
                 </h1>
                 <p className="mt-3 flex items-center gap-2 text-ink/60">
                   <MapPin size={16} className="text-gold" />
-                  {property.location.city}, {property.location.state},{" "}
+                  {property.location.city}، {property.location.state}،{" "}
                   {property.location.country}
                 </p>
               </div>
-              <div className="text-left sm:text-right">
+              <div className="text-start sm:text-end">
                 <p className="text-3xl font-bold tracking-tight text-navy">
                   {formatPrice(property.price)}
                 </p>
@@ -235,7 +235,7 @@ export default function PropertyDetail() {
               {specs.map((spec) => (
                 <div
                   key={spec.label}
-                  className="flex items-center gap-4 border-navy/10 p-5 odd:border-r sm:border-r sm:last:border-r-0 sm:odd:border-r"
+                  className="flex items-center gap-4 border-navy/10 p-5 odd:border-e sm:border-e sm:last:border-e-0 sm:odd:border-e"
                 >
                   <spec.icon size={26} className="shrink-0 text-gold" strokeWidth={1.5} />
                   <div>
@@ -248,7 +248,7 @@ export default function PropertyDetail() {
 
             {/* Description */}
             <Reveal className="mt-12">
-              <h2 className="text-xl font-bold text-navy">About This Property</h2>
+              <h2 className="text-xl font-bold text-navy">درباره این ملک</h2>
               {property.description.map((para) => (
                 <p key={para.slice(0, 24)} className="mt-4 leading-relaxed text-ink/70">
                   {para}
@@ -258,7 +258,7 @@ export default function PropertyDetail() {
 
             {/* Key features */}
             <Reveal className="mt-12">
-              <h2 className="text-xl font-bold text-navy">Key Features</h2>
+              <h2 className="text-xl font-bold text-navy">ویژگی‌های کلیدی</h2>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {property.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3 text-sm text-ink/70">
@@ -271,7 +271,7 @@ export default function PropertyDetail() {
 
             {/* Amenities */}
             <Reveal className="mt-12">
-              <h2 className="text-xl font-bold text-navy">Amenities</h2>
+              <h2 className="text-xl font-bold text-navy">امکانات</h2>
               <div className="mt-5 flex flex-wrap gap-2.5">
                 {property.amenities.map((amenity) => (
                   <span
@@ -303,7 +303,7 @@ export default function PropertyDetail() {
                         href={BRAND.phoneHref}
                         className="mt-1 flex items-center gap-1.5 text-xs text-ink/60 transition-colors hover:text-navy"
                       >
-                        <Phone size={11} /> {BRAND.phone}
+                        <Phone size={11} /> <span dir="ltr">{BRAND.phone}</span>
                       </a>
                     </div>
                   </div>
@@ -315,7 +315,7 @@ export default function PropertyDetail() {
                     className="btn-primary w-full"
                   >
                     <Mail size={15} />
-                    Contact Agent
+                    تماس با مشاور
                   </button>
                   <button
                     type="button"
@@ -323,11 +323,11 @@ export default function PropertyDetail() {
                     className="btn-outline w-full"
                   >
                     <CalendarDays size={15} />
-                    Schedule a Viewing
+                    رزرو بازدید
                   </button>
                 </div>
                 <p className="mt-5 text-center text-xs text-ink/40">
-                  Response within one business day.
+                  پاسخ در یک روز کاری
                 </p>
               </div>
             </div>
@@ -341,7 +341,7 @@ export default function PropertyDetail() {
           <div className="container-x">
             <Reveal>
               <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
-                Similar Properties
+                ملک‌های مشابه
               </h2>
             </Reveal>
             <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
@@ -353,8 +353,8 @@ export default function PropertyDetail() {
             </div>
             <div className="mt-12 text-center">
               <Link to="/properties" className="btn-outline">
-                <ArrowLeft size={15} />
-                Browse All Properties
+                <ArrowRight size={15} />
+                مرور همه ملک‌ها
               </Link>
             </div>
           </div>
@@ -365,24 +365,24 @@ export default function PropertyDetail() {
       <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-4 border-t border-navy/10 bg-white/95 px-5 py-3.5 backdrop-blur-md lg:hidden">
         <div>
           <p className="text-lg font-bold text-navy">{formatPrice(property.price)}</p>
-          <p className="text-[11px] text-ink/50">{property.location.city}, {property.location.state}</p>
+          <p className="text-[11px] text-ink/50">{property.location.city}، {property.location.state}</p>
         </div>
         <button
           type="button"
           onClick={() => setViewingOpen(true)}
           className="btn-primary px-6 py-3"
         >
-          Schedule Viewing
-          <ArrowRight size={15} />
+          رزرو بازدید
+          <ArrowLeft size={15} />
         </button>
       </div>
       <div className="h-[76px] lg:hidden" aria-hidden="true" />
 
       {/* Modals */}
-      <Modal open={contactOpen} onClose={() => setContactOpen(false)} title="Contact the Agent">
+      <Modal open={contactOpen} onClose={() => setContactOpen(false)} title="گفت‌وگو با مشاور">
         <ContactAgentForm property={property} onClose={() => setContactOpen(false)} />
       </Modal>
-      <Modal open={viewingOpen} onClose={() => setViewingOpen(false)} title="Schedule a Viewing">
+      <Modal open={viewingOpen} onClose={() => setViewingOpen(false)} title="رزرو بازدید">
         <ViewingForm property={property} onClose={() => setViewingOpen(false)} />
       </Modal>
     </article>

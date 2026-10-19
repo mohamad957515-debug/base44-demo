@@ -12,16 +12,15 @@ export default function WhyChoose() {
       />
       <div className="container-x relative grid gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal>
-          <p className="label-gold">Why Choose Horizon</p>
+          <p className="label-gold">چرا هورایزن</p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            A Standard Above
+            استانداردی بالاتر
             <br />
-            the Ordinary
+            از معمول
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-white/65">
-            We measure success in decades-long relationships, not
-            transactions — a quiet promise kept across every home we
-            represent.
+            ما موفقیت را در روابط چنددهه‌ای می‌سنجیم، نه در معاملات — قولی
+            آرام که در هر خانه‌ای نمایندگی می‌کنیم، پاس داشته می‌شود.
           </p>
           <ul className="mt-8 space-y-4">
             {WHY_POINTS.map((point) => (
@@ -45,7 +44,7 @@ export default function WhyChoose() {
                 <p className="text-3xl font-bold tracking-tight text-gold lg:text-4xl">
                   {stat.value}
                 </p>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                <p className="mt-2 text-xs font-semibold text-white/60">
                   {stat.label}
                 </p>
               </div>

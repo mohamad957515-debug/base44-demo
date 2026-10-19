@@ -8,16 +8,16 @@ export default function Services() {
       <div className="container-x">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
           <Reveal>
-            <p className="label-gold">What We Do</p>
+            <p className="label-gold">چه می‌کنیم</p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
-              Services Built Around You
+              خدماتی که برای شما ساخته شده
             </h2>
           </Reveal>
           <Reveal delay={100}>
             <p className="max-w-md text-base leading-relaxed text-ink/60 lg:ml-auto">
-              From the first conversation to long after the keys change hands,
-              our specialists deliver a standard of service the market rarely
-              sees.
+              از نخستین گفت‌وگو تا مدت‌ها پس از تحویل کلیدها، متخصصان ما
+              استانداردی از خدمات ارائه می‌کنند که به‌ندرت در بازار دیده
+              می‌شود.
             </p>
           </Reveal>
         </div>

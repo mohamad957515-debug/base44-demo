@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { RotateCcw, Search, SlidersHorizontal } from "lucide-react";
 import PropertyCard from "../components/PropertyCard";
 import Reveal from "../components/Reveal";
+import { faNum } from "../lib/format";
 import {
   fetchProperties,
   filterAndSortProperties,
@@ -17,7 +18,7 @@ const INITIAL_FILTERS = {
   sort: "featured",
 };
 
-const selectClass = "field cursor-pointer appearance-none pr-8";
+const selectClass = "field cursor-pointer appearance-none pe-8";
 
 function PageHeader() {
   return (
@@ -27,13 +28,13 @@ function PageHeader() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_50%_0%,rgba(21,52,87,0.9),transparent)]"
       />
       <div className="container-x relative text-center">
-        <p className="label-gold">Our Listings</p>
+        <p className="label-gold">آگهی‌های ما</p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          Find Your Ideal Property
+          ملک مورد نظرتان را پیدا کنید
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-white/60">
-          Browse our portfolio of exceptional homes — filter by location,
-          type, price, and more.
+          مجموعه خانه‌های استثنایی ما را مرور کنید — بر اساس مکان، نوع، قیمت
+          و موارد دیگر فیلتر کنید.
         </p>
       </div>
     </section>
@@ -63,11 +64,11 @@ export default function Properties() {
   );
 
   const locations = useMemo(
-    () => [...new Set(all.map((p) => p.location.city))].sort(),
+    () => [...new Set(all.map((p) => p.location.city))].sort((a, b) => a.localeCompare(b, "fa")),
     [all]
   );
   const types = useMemo(
-    () => [...new Set(all.map((p) => p.type))].sort(),
+    () => [...new Set(all.map((p) => p.type))].sort((a, b) => a.localeCompare(b, "fa")),
     [all]
   );
 
@@ -88,27 +89,27 @@ export default function Properties() {
         <div className="container-x">
           {/* Filter bar */}
           <div className="rounded-2xl bg-white p-5 shadow-card sm:p-6">
-            <div className="flex items-center gap-2 pb-4 text-xs font-bold uppercase tracking-[0.2em] text-navy/50">
+            <div className="flex items-center gap-2 pb-4 text-xs font-bold text-navy/50">
               <SlidersHorizontal size={14} />
-              Refine your search
+              جست‌وجو را دقیق‌تر کنید
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <div className="relative sm:col-span-2 lg:col-span-2 xl:col-span-2">
                 <Search
                   size={16}
-                  className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-navy/40"
+                  className="pointer-events-none absolute start-4 top-1/2 -translate-y-1/2 text-navy/40"
                 />
                 <input
                   type="search"
                   value={filters.query}
                   onChange={update("query")}
-                  placeholder="Search by name, city, or state…"
-                  aria-label="Search properties"
-                  className="field pl-11"
+                  placeholder="جست‌وجو بر اساس نام، شهر یا ایالت…"
+                  aria-label="جست‌وجوی ملک"
+                  className="field ps-11"
                 />
               </div>
               <label className="sr-only" htmlFor="filter-location">
-                Location
+                مکان
               </label>
               <select
                 id="filter-location"
@@ -116,7 +117,7 @@ export default function Properties() {
                 onChange={update("location")}
                 className={selectClass}
               >
-                <option value="all">All Locations</option>
+                <option value="all">همه مکان‌ها</option>
                 {locations.map((city) => (
                   <option key={city} value={city}>
                     {city}
@@ -124,7 +125,7 @@ export default function Properties() {
                 ))}
               </select>
               <label className="sr-only" htmlFor="filter-type">
-                Property type
+                نوع ملک
               </label>
               <select
                 id="filter-type"
@@ -132,7 +133,7 @@ export default function Properties() {
                 onChange={update("type")}
                 className={selectClass}
               >
-                <option value="all">All Types</option>
+                <option value="all">همه انواع</option>
                 {types.map((type) => (
                   <option key={type} value={type}>
                     {type}
@@ -140,7 +141,7 @@ export default function Properties() {
                 ))}
               </select>
               <label className="sr-only" htmlFor="filter-price">
-                Price range
+                دامنه قیمت
               </label>
               <select
                 id="filter-price"
@@ -148,14 +149,14 @@ export default function Properties() {
                 onChange={update("price")}
                 className={selectClass}
               >
-                <option value="all">Any Price</option>
-                <option value="under-2">Under $2M</option>
-                <option value="2-3.5">$2M – $3.5M</option>
-                <option value="3.5-5">$3.5M – $5M</option>
-                <option value="over-5">$5M+</option>
+                <option value="all">هر قیمتی</option>
+                <option value="under-2">زیر ۲ میلیون دلار</option>
+                <option value="2-3.5">۲ تا ۳٫۵ میلیون دلار</option>
+                <option value="3.5-5">۳٫۵ تا ۵ میلیون دلار</option>
+                <option value="over-5">بالای ۵ میلیون دلار</option>
               </select>
               <label className="sr-only" htmlFor="filter-beds">
-                Bedrooms
+                تعداد خواب
               </label>
               <select
                 id="filter-beds"
@@ -163,14 +164,14 @@ export default function Properties() {
                 onChange={update("beds")}
                 className={selectClass}
               >
-                <option value="all">Any Beds</option>
-                <option value="3">3+ Beds</option>
-                <option value="4">4+ Beds</option>
-                <option value="5">5+ Beds</option>
-                <option value="6">6+ Beds</option>
+                <option value="all">هر تعداد خواب</option>
+                <option value="3">۳ خواب و بیشتر</option>
+                <option value="4">۴ خواب و بیشتر</option>
+                <option value="5">۵ خواب و بیشتر</option>
+                <option value="6">۶ خواب و بیشتر</option>
               </select>
               <label className="sr-only" htmlFor="filter-baths">
-                Bathrooms
+                تعداد حمام
               </label>
               <select
                 id="filter-baths"
@@ -178,13 +179,13 @@ export default function Properties() {
                 onChange={update("baths")}
                 className={selectClass}
               >
-                <option value="all">Any Baths</option>
-                <option value="3">3+ Baths</option>
-                <option value="4">4+ Baths</option>
-                <option value="5">5+ Baths</option>
+                <option value="all">هر تعداد حمام</option>
+                <option value="3">۳ حمام و بیشتر</option>
+                <option value="4">۴ حمام و بیشتر</option>
+                <option value="5">۵ حمام و بیشتر</option>
               </select>
               <label className="sr-only" htmlFor="filter-sort">
-                Sort by
+                مرتب‌سازی
               </label>
               <select
                 id="filter-sort"
@@ -192,10 +193,10 @@ export default function Properties() {
                 onChange={update("sort")}
                 className={selectClass}
               >
-                <option value="featured">Featured First</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="newest">Newest Listings</option>
+                <option value="featured">ابتدا ملک‌های ویژه</option>
+                <option value="price-asc">قیمت: کم به زیاد</option>
+                <option value="price-desc">قیمت: زیاد به کم</option>
+                <option value="newest">جدیدترین آگهی‌ها</option>
               </select>
             </div>
           </div>
@@ -203,9 +204,9 @@ export default function Properties() {
           {/* Results header */}
           <div className="mt-10 flex items-center justify-between gap-4">
             <p className="text-sm font-medium text-ink/60" aria-live="polite">
-              Showing{" "}
-              <span className="font-bold text-navy">{results.length}</span> of{" "}
-              {all.length} properties
+              نمایش{" "}
+              <span className="font-bold text-navy">{faNum(results.length)}</span>{" "}
+              از {faNum(all.length)} ملک
             </p>
             {isFiltered && (
               <button
@@ -214,7 +215,7 @@ export default function Properties() {
                 className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-gold"
               >
                 <RotateCcw size={14} />
-                Reset filters
+                حذف فیلترها
               </button>
             )}
           </div>
@@ -234,11 +235,11 @@ export default function Properties() {
                 <Search size={24} />
               </span>
               <h2 className="mt-6 text-xl font-bold text-navy">
-                No properties match your criteria
+                ملکی با این شرایط پیدا نشد
               </h2>
               <p className="mt-2 max-w-sm text-sm text-ink/60">
-                Try widening your price range or removing a filter to see more
-                results.
+                دامنه قیمت را بازتر کنید یا فیلتری را بردارید تا نتایج
+                بیشتری ببینید.
               </p>
               <button
                 type="button"
@@ -246,7 +247,7 @@ export default function Properties() {
                 className="btn-primary mt-8"
               >
                 <RotateCcw size={15} />
-                Reset all filters
+                حذف همه فیلترها
               </button>
             </div>
           )}

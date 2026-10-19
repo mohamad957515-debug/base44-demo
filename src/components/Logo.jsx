@@ -16,7 +16,7 @@ export default function Logo({ light = true }) {
   return (
     <Link
       to="/"
-      aria-label="Horizon Properties — home"
+      aria-label="هورایزن پروپرتیز — صفحه اصلی"
       className="flex items-center gap-2.5"
     >
       <LogoMark className="h-8 w-8 shrink-0 text-gold" />

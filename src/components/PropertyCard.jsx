@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Bath, BedDouble, MapPin, Ruler } from "lucide-react";
 import FavoriteButton from "./FavoriteButton";
-import { formatNumber, formatPriceShort } from "../lib/format";
+import { faNum, formatNumber, formatPriceShort } from "../lib/format";
 
 /**
  * Reusable property card. `size="large"` renders the editorial hero card
@@ -25,15 +25,15 @@ export default function PropertyCard({ property, size = "default" }) {
             large ? "aspect-[16/10]" : "aspect-[4/3]"
           }`}
         />
-        <span className="absolute left-4 top-4 rounded-full bg-navy-950/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+        <span className="absolute start-4 top-4 rounded-full bg-navy-950/60 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
           {property.type}
         </span>
         {property.isNew && (
-          <span className="absolute left-4 bottom-4 rounded-full bg-gold px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-950">
-            New
+          <span className="absolute bottom-4 start-4 rounded-full bg-gold px-3 py-1 text-[11px] font-bold text-navy-950">
+            جدید
           </span>
         )}
-        <span className="absolute right-4 top-4">
+        <span className="absolute end-4 top-4">
           <FavoriteButton propertyId={property.id} />
         </span>
       </div>
@@ -49,7 +49,7 @@ export default function PropertyCard({ property, size = "default" }) {
           </h3>
           <p className="mt-1.5 flex items-center gap-1.5 text-sm text-ink/60">
             <MapPin size={14} className="shrink-0 text-gold" />
-            {property.location.city}, {property.location.state}
+            {property.location.city}، {property.location.state}
           </p>
         </div>
         <p
@@ -62,14 +62,14 @@ export default function PropertyCard({ property, size = "default" }) {
       {large && (
         <div className="mt-5 flex flex-wrap items-center gap-x-7 gap-y-2 border-t border-ink/10 pt-4 text-sm text-ink/60">
           <span className="flex items-center gap-2">
-            <BedDouble size={16} className="text-gold" /> {property.beds} Beds
+            <BedDouble size={16} className="text-gold" /> {faNum(property.beds)} خواب
           </span>
           <span className="flex items-center gap-2">
-            <Bath size={16} className="text-gold" /> {property.baths} Baths
+            <Bath size={16} className="text-gold" /> {faNum(property.baths)} حمام
           </span>
           <span className="flex items-center gap-2">
             <Ruler size={16} className="text-gold" />{" "}
-            {formatNumber(property.sqft)} Sqft
+            {formatNumber(property.sqft)} فوت مربع
           </span>
         </div>
       )}

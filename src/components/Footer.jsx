@@ -34,14 +34,14 @@ function NewsletterForm() {
   if (done) {
     return (
       <p className="flex items-center gap-2 text-sm font-medium text-gold">
-        <Check size={16} /> Thank you — you're on the list.
+        <Check size={16} /> ممنون — شما به فهرست خبرنامه پیوستید.
       </p>
     );
   }
   return (
     <form onSubmit={submit} className="flex gap-2">
       <label htmlFor="newsletter-email" className="sr-only">
-        Email address
+        ایمیل
       </label>
       <input
         id="newsletter-email"
@@ -49,12 +49,12 @@ function NewsletterForm() {
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="Your email address"
+        placeholder="ایمیل شما"
         className="min-w-0 flex-1 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
       />
       <button
         type="submit"
-        aria-label="Subscribe"
+        aria-label="عضویت در خبرنامه"
         className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold text-navy-950 transition hover:bg-gold-light"
       >
         <Send size={16} />
@@ -70,9 +70,9 @@ export default function Footer() {
         <div>
           <Logo light />
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/60">
-            Connecting people with extraordinary homes and smart investments
-            since 2010. Integrity, transparency, and client satisfaction — at
-            the heart of everything we do.
+            از سال ۲۰۱۰، مردم را با خانه‌های استثنایی و سرمایه‌گذاری‌های
+            هوشمند به هم پیوند می‌زنیم. صداقت، شفافیت و رضایت مشتری — جوهره
+            هر کاری که می‌کنیم.
           </p>
           <div className="mt-6 flex gap-3">
             {SOCIALS.map((s) => {
@@ -93,10 +93,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <nav aria-label="Footer">
-          <h4 className="text-xs font-bold uppercase tracking-[0.28em] text-gold">
-            Explore
-          </h4>
+        <nav aria-label="فوتر">
+          <h4 className="label-gold">دسترسی سریع</h4>
           <ul className="mt-6 space-y-3">
             {NAV_LINKS.map((item) => (
               <li key={item.label}>
@@ -112,9 +110,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-[0.28em] text-gold">
-            Contact
-          </h4>
+          <h4 className="label-gold">تماس</h4>
           <ul className="mt-6 space-y-4 text-sm text-white/65">
             <li>
               <a
@@ -122,7 +118,7 @@ export default function Footer() {
                 className="flex items-start gap-3 transition-colors hover:text-gold"
               >
                 <Phone size={15} className="mt-0.5 shrink-0 text-gold" />
-                {BRAND.phone}
+                <span dir="ltr">{BRAND.phone}</span>
               </a>
             </li>
             <li>
@@ -146,11 +142,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-[0.28em] text-gold">
-            Newsletter
-          </h4>
+          <h4 className="label-gold">خبرنامه</h4>
           <p className="mt-6 text-sm leading-relaxed text-white/60">
-            New listings and market insights, delivered monthly.
+            آگهی‌های جدید و تحلیل بازار، ماهانه در ایمیل شما.
           </p>
           <div className="mt-5">
             <NewsletterForm />
@@ -160,7 +154,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/40 sm:flex-row">
-          <p>© {new Date().getFullYear()} {BRAND.name}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {BRAND.name} — تمام حقوق محفوظ است.</p>
           <p>{BRAND.hours}</p>
         </div>
       </div>

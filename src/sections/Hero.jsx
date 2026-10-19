@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Scroll-driven cinematic hero.
+ * Scroll-driven cinematic hero (fa-IR / RTL).
  *
  * The hero is a tall "scroll track" (~250–400vh depending on the video
  * duration) with a 100vh sticky viewport pinned at the top. The user's scroll
@@ -71,7 +71,7 @@ function StaticHero() {
     <section className="relative h-screen overflow-hidden bg-navy-950">
       <img
         src={FALLBACK_IMAGE}
-        alt="Modern luxury villa with illuminated glass walls and an infinity pool at dusk"
+        alt="ویلای لوکس مدرن با دیوارهای شیشه‌ای روشن و استخر بی‌نهایت در غروب"
         fetchpriority="high"
         className="absolute inset-0 h-full w-full object-cover"
       />
@@ -80,14 +80,14 @@ function StaticHero() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_35%,rgba(6,15,26,0.25),rgba(6,15,26,0.65))]"
       />
       <div className="container-x relative flex h-full flex-col items-center justify-center text-center">
-        <h1 className="hero-in mx-auto max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[64px]">
-          Discover Exceptional
+        <h1 className="hero-in mx-auto max-w-4xl text-4xl font-bold leading-[1.25] text-white sm:text-5xl lg:text-[56px]">
+          خانه‌های استثنایی
           <br />
-          Homes &amp; Investments
+          و سرمایه‌گذاری‌های کم‌نظیر را کشف کنید
         </h1>
         <p className="hero-in-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-          Premium properties in prime locations. Find your dream home or the
-          perfect investment with confidence.
+          ملک‌های لوکس در مکان‌های برتر. خانه رویایی یا سرمایه‌گذاری ایده‌آل را
+          با اطمینان پیدا کنید.
         </p>
       </div>
     </section>
@@ -245,7 +245,7 @@ function ScrollHero() {
   return (
     <section
       ref={sectionRef}
-      aria-label="Hero: discover exceptional homes and investments"
+      aria-label="بخش آغازین — خانه‌های استثنایی و سرمایه‌گذاری‌های کم‌نظیر"
       className="relative bg-navy-950"
       style={{ height: `${scrollVh + 100}vh` }}
     >
@@ -289,22 +289,22 @@ function ScrollHero() {
           ref={textRef}
           className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center"
         >
-          <h1 className="hero-in mx-auto max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(6,15,26,0.45)] sm:text-5xl lg:text-[64px]">
-            Discover Exceptional
+          <h1 className="hero-in mx-auto max-w-4xl text-4xl font-bold leading-[1.25] text-white drop-shadow-[0_2px_18px_rgba(6,15,26,0.45)] sm:text-5xl lg:text-[56px]">
+            خانه‌های استثنایی
             <br />
-            Homes &amp; Investments
+            و سرمایه‌گذاری‌های کم‌نظیر را کشف کنید
           </h1>
           <p className="hero-in-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/85 drop-shadow-[0_1px_10px_rgba(6,15,26,0.5)] sm:text-lg">
-            Premium properties in prime locations. Find your dream home or the
-            perfect investment with confidence.
+            ملک‌های لوکس در مکان‌های برتر. خانه رویایی یا سرمایه‌گذاری ایده‌آل را
+            با اطمینان پیدا کنید.
           </p>
         </div>
 
         {/* Minimal premium loading treatment (req. 17) */}
         {status === "loading" && (
           <div className="pointer-events-none absolute bottom-16 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">
-              Preparing the experience
+            <span className="text-[11px] font-semibold tracking-[0.2em] text-white/70">
+              در حال آماده‌سازی تجربه
             </span>
             <span className="hero-loader" aria-hidden="true" />
           </div>

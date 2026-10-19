@@ -3,14 +3,19 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import PropertyCard from "../components/PropertyCard";
 import Reveal from "../components/Reveal";
+import { faNum } from "../lib/format";
 import { properties } from "../data/properties";
 
-/** Horizontal featured-properties carousel (drag / swipe / buttons / keyboard). */
+/**
+ * Horizontal featured-properties carousel (drag / swipe / buttons / keyboard).
+ * Runs in RTL: "next" advances leftward, matching the Persian layout.
+ */
 export default function FeaturedProperties() {
   const featured = properties.filter((p) => p.featured);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     containScroll: "trimSnaps",
+    direction: "rtl",
   });
   const [selected, setSelected] = useState(0);
 
@@ -25,14 +30,15 @@ export default function FeaturedProperties() {
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
+  // RTL: the left arrow moves forward, the right arrow moves back.
   const onKeydown = (e) => {
     if (e.key === "ArrowLeft") {
       e.preventDefault();
-      scrollPrev();
+      scrollNext();
     }
     if (e.key === "ArrowRight") {
       e.preventDefault();
-      scrollNext();
+      scrollPrev();
     }
   };
 
@@ -40,9 +46,9 @@ export default function FeaturedProperties() {
     <section id="featured" className="bg-ivory py-20 lg:py-28">
       <div className="container-x">
         <Reveal className="text-center">
-          <p className="label-gold">Featured</p>
+          <p className="label-gold">ویژه</p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
-            Featured Properties
+            ملک‌های شاخص
           </h2>
         </Reveal>
       </div>
@@ -53,7 +59,7 @@ export default function FeaturedProperties() {
           className="overflow-hidden"
           role="group"
           aria-roledescription="carousel"
-          aria-label="Featured properties"
+          aria-label="ملک‌های شاخص"
           tabIndex={0}
           onKeyDown={onKeydown}
         >
@@ -78,22 +84,22 @@ export default function FeaturedProperties() {
           </div>
         </div>
 
-        {/* Edge navigation (desktop) */}
+        {/* Edge navigation (desktop) — RTL: next sits on the left. */}
         <button
           type="button"
           onClick={scrollPrev}
-          aria-label="Previous properties"
-          className="absolute left-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-all duration-300 hover:bg-navy hover:text-white lg:grid"
+          aria-label="ملک‌های قبلی"
+          className="absolute right-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-all duration-300 hover:bg-navy hover:text-white lg:grid"
         >
-          <ArrowLeft size={18} />
+          <ArrowRight size={18} />
         </button>
         <button
           type="button"
           onClick={scrollNext}
-          aria-label="Next properties"
-          className="absolute right-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-all duration-300 hover:bg-navy hover:text-white lg:grid"
+          aria-label="ملک‌های بعدی"
+          className="absolute left-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-all duration-300 hover:bg-navy hover:text-white lg:grid"
         >
-          <ArrowRight size={18} />
+          <ArrowLeft size={18} />
         </button>
       </div>
 
@@ -104,7 +110,7 @@ export default function FeaturedProperties() {
             key={p.id}
             type="button"
             onClick={() => emblaApi?.scrollTo(i)}
-            aria-label={`Go to property ${i + 1}`}
+            aria-label={`رفتن به ملک ${faNum(i + 1)}`}
             aria-current={i === selected}
             className={`h-1.5 rounded-full transition-all duration-300 ${
               i === selected ? "w-6 bg-navy" : "w-1.5 bg-navy/20"

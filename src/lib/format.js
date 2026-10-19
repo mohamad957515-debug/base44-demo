@@ -1,10 +1,13 @@
-/** Formats a USD price in millions, e.g. 2350000 -> "$2.35 Million". */
+/** Converts a number to Persian (fa-IR) digits & separators. */
+export const faNum = (n) => n.toLocaleString("fa-IR");
+
+/** Full price label, e.g. 2350000 -> "۲٫۳۵ میلیون دلار". */
 export const formatPrice = (price) =>
-  `$${parseFloat((price / 1_000_000).toFixed(2))} Million`;
+  `${faNum(parseFloat((price / 1_000_000).toFixed(2)))} میلیون دلار`;
 
-/** Compact price, e.g. 2350000 -> "$2.35M". */
+/** Compact price for cards, e.g. 2350000 -> "۲٫۳۵ م.د" (میلیون دلار). */
 export const formatPriceShort = (price) =>
-  `$${parseFloat((price / 1_000_000).toFixed(2))}M`;
+  `${faNum(parseFloat((price / 1_000_000).toFixed(2)))} م.د`;
 
-/** Thousands-separated area, e.g. 4800 -> "4,800". */
-export const formatNumber = (n) => n.toLocaleString("en-US");
+/** Persian thousands-separated area, e.g. 4800 -> "۴٬۸۰۰". */
+export const formatNumber = (n) => faNum(n);

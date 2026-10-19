@@ -36,7 +36,7 @@ export default function Modal({ open, onClose, title, children }) {
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close dialog"
+            aria-label="بستن پنجره"
             className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-navy/60 transition-colors hover:bg-navy/5 hover:text-navy"
           >
             <X size={18} />

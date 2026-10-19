@@ -8,9 +8,9 @@ export default function Team() {
     <section id="team" className="scroll-mt-24 bg-ivory py-20 lg:py-28">
       <div className="container-x">
         <Reveal className="text-center">
-          <p className="label-gold">Our Team</p>
+          <p className="label-gold">تیم ما</p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
-            Meet the Experts
+            با متخصصان ما آشنا شوید
           </h2>
         </Reveal>
 
@@ -30,14 +30,14 @@ export default function Team() {
                       href="https://www.linkedin.com"
                       target="_blank"
                       rel="noreferrer"
-                      aria-label={`${member.name} on LinkedIn`}
+                      aria-label={`پروفایل ${member.name} در لینکدین`}
                       className="grid h-9 w-9 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition hover:bg-gold hover:text-navy-950"
                     >
                       <Linkedin size={14} />
                     </a>
                     <a
                       href="mailto:hello@horizonproperties.com"
-                      aria-label={`Email ${member.name}`}
+                      aria-label={`ارسال ایمیل به ${member.name}`}
                       className="grid h-9 w-9 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition hover:bg-gold hover:text-navy-950"
                     >
                       <Mail size={14} />

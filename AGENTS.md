@@ -49,3 +49,7 @@ docker compose -f docker-compose.base44.yml up -d
 - Vite dev server is `strictPort` — make sure 3000 is free before `up`.
 - Compose project name is fixed (`horizon-properties`) so the same volumes
   are reused across restarts.
+- UI is fully Persian (fa-IR) + RTL: `<html lang="fa" dir="rtl">`, Vazirmatn
+  font, all copy in `src/data/*`. Render numbers with `faNum()` from
+  `src/lib/format.js`, never raw Latin digits. Directional icons/positions
+  follow RTL ("next" points left); the Embla carousel runs `direction: "rtl"`.

@@ -21,7 +21,7 @@ export default function FavoriteButton({
     <button
       type="button"
       aria-pressed={fav}
-      aria-label={fav ? "Remove from favorites" : "Save to favorites"}
+      aria-label={fav ? "حذف از علاقه‌مندی‌ها" : "افزودن به علاقه‌مندی‌ها"}
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -35,8 +35,8 @@ export default function FavoriteButton({
         className={fav ? "fill-gold text-gold" : ""}
       />
       {withLabel && (
-        <span className="ml-2 text-sm font-semibold">
-          {fav ? "Saved" : "Save"}
+        <span className="ms-2 text-sm font-semibold">
+          {fav ? "ذخیره شد" : "ذخیره"}
         </span>
       )}
     </button>
