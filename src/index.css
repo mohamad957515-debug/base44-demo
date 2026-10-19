@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  ::selection {
+    @apply bg-gold/40 text-navy-950;
+  }
+  :focus-visible {
+    outline: 2px solid #c5a059;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-navy px-7 py-3.5 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-navy-700 hover:shadow-card active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-navy/25 bg-transparent px-7 py-3.5 text-sm font-semibold tracking-wide text-navy transition-all duration-300 hover:border-navy hover:bg-navy hover:text-white active:scale-[0.98];
+  }
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-white/40 bg-transparent px-7 py-3.5 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-navy active:scale-[0.98];
+  }
+
+  .label-gold {
+    @apply text-xs font-bold uppercase tracking-[0.28em] text-gold;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-navy/15 bg-white px-4 py-3 text-sm text-ink transition placeholder:text-ink/40 focus:border-navy focus:outline-none focus:ring-2 focus:ring-gold/40;
+  }
+}
+
+/* ---------- Motion ---------- */
+
+/* Scroll-reveal entrances (driven by <Reveal/>) */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entrance */
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes heroImgIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.hero-in {
+  animation: heroIn 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-in-2 {
+  animation: heroIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+.hero-in-3 {
+  animation: heroIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+}
+.hero-media {
+  animation: heroImgIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+/* Mobile menu items */
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.menu-item {
+  animation: menuIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Overlays */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.anim-fade {
+  animation: fadeIn 0.3s ease both;
+}
+.anim-zoom {
+  animation: zoomIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Gallery image swap */
+@keyframes gallerySwap {
+  from {
+    opacity: 0.35;
+    transform: scale(1.015);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.gallery-img {
+  animation: gallerySwap 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .hero-in,
+  .hero-in-2,
+  .hero-in-3,
+  .hero-media,
+  .menu-item,
+  .anim-fade,
+  .anim-zoom,
+  .gallery-img {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

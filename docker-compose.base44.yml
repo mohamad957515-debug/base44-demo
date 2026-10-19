@@ -1,0 +1,34 @@
+name: horizon-properties
+
+services:
+  web:
+    image: node:22-alpine
+    working_dir: /workspace
+    restart: on-failure
+    # Install dependencies (persisted in a named volume), then run the Vite
+    # dev server with live reload on all interfaces.
+    command:
+      - sh
+      - -ec
+      - |
+        npm install --no-audit --no-fund
+        exec npm run dev -- --host 0.0.0.0 --port 3000 --strictPort
+    environment:
+      # Preview-mode flag; app keeps original behavior for any other value.
+      - BASE44_PREVIEW_MODE=${BASE44_PREVIEW_MODE:-}
+      # Vite >= 6.1 appends this to server.allowedHosts for the sandbox proxy.
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/workspace
+      - hp_node_modules:/workspace/node_modules
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 90s
+
+volumes:
+  hp_node_modules:
