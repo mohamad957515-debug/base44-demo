@@ -27,8 +27,8 @@ export default {
         ink: "#101D33",
       },
       fontFamily: {
-        // Vazirmatn: premium Persian typeface; Manrope covers the Latin wordmark.
-        sans: ["Vazirmatn", "Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Iran Yekan: site-wide typeface (self-hosted @font-face in src/index.css).
+        sans: ["IRANYekan", "Tahoma", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
         card: "0 20px 40px -20px rgba(10, 35, 66, 0.25)",

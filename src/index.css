@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- Iran Yekan (self-hosted, public/fonts) ---------- */
+@font-face {
+  font-family: "IRANYekan";
+  src: url("/fonts/IRANYekanWebLight.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IRANYekan";
+  src: url("/fonts/IRANYekanWebRegular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IRANYekan";
+  src: url("/fonts/IRANYekanWebMedium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IRANYekan";
+  src: url("/fonts/IRANYekanWebBold.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IRANYekan";
+  src: url("/fonts/IRANYekanWebExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
