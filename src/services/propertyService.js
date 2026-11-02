@@ -1,4 +1,3 @@
-import { TEAM } from "../data/content";
 import { properties } from "../data/properties";
 
 /**
@@ -29,29 +28,25 @@ export async function fetchSimilarProperties(slug, limit = 3) {
       let score = 0;
       if (p.type === current.type) score += 2;
       if (p.location.state === current.location.state) score += 1;
-      score -= Math.abs(p.price - current.price) / 5_000_000;
+      score -= Math.abs(p.price - current.price) / 1_000_000_000;
       return { p, score };
     })
     .sort((a, b) => b.score - a.score);
   return scored.slice(0, limit).map((s) => s.p);
 }
 
-export function resolveAgent(agentId) {
-  return TEAM.find((m) => m.id === agentId) ?? null;
-}
-
 /** Pure client-side filter + sort used by the Properties page. */
 export function filterAndSortProperties(list, filters) {
   const inPriceBand = (p, band) => {
     switch (band) {
-      case "under-2":
-        return p.price < 2_000_000;
-      case "2-3.5":
-        return p.price >= 2_000_000 && p.price <= 3_500_000;
-      case "3.5-5":
-        return p.price > 3_500_000 && p.price <= 5_000_000;
-      case "over-5":
-        return p.price > 5_000_000;
+      case "under-12":
+        return p.price < 12_000_000_000;
+      case "12-15":
+        return p.price >= 12_000_000_000 && p.price <= 15_000_000_000;
+      case "15-18":
+        return p.price > 15_000_000_000 && p.price <= 18_000_000_000;
+      case "over-18":
+        return p.price > 18_000_000_000;
       default:
         return true;
     }

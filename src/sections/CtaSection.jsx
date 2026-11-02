@@ -15,16 +15,16 @@ export default function CtaSection() {
               </span>
               <div>
                 <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl lg:text-4xl">
-                  آماده‌اید ملک رویایی‌تان را پیدا کنید؟
+                  برای بازدید، پیش‌خرید یا مشارکت در ساخت مشاوره بگیرید
                 </h2>
                 <p className="mt-2 text-base text-ink/60">
-                  بگذارید متخصصان ما شما را به خانه یا سرمایه‌گذاری مناسب
-                  برسانند.
+                  با یک تماس، مسیر مناسب شما مشخص می‌شود — خرید، پیش‌خرید،
+                  سرمایه‌گذاری یا مشارکت در ساخت.
                 </p>
               </div>
             </div>
             <Link to="/contact" className="btn-primary shrink-0">
-              تماس با ما
+              تماس با سهند
               <ArrowLeft size={16} />
             </Link>
           </div>

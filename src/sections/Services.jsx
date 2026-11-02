@@ -10,14 +10,13 @@ export default function Services() {
           <Reveal>
             <p className="label-gold">چه می‌کنیم</p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
-              خدماتی که برای شما ساخته شده
+              از انتخاب مسیر تا تحویل کلید
             </h2>
           </Reveal>
           <Reveal delay={100}>
             <p className="max-w-md text-base leading-relaxed text-ink/60 lg:ml-auto">
-              از نخستین گفت‌وگو تا مدت‌ها پس از تحویل کلیدها، متخصصان ما
-              استانداردی از خدمات ارائه می‌کنند که به‌ندرت در بازار دیده
-              می‌شود.
+              سهند پروژه را از زاویه سرمایه، سکونت، کیفیت و برند نهایی بررسی
+              می‌کند — خدمات ما این مسیر را برای شما شفاف می‌کند.
             </p>
           </Reveal>
         </div>

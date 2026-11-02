@@ -28,13 +28,13 @@ function PageHeader() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_50%_0%,rgba(21,52,87,0.9),transparent)]"
       />
       <div className="container-x relative text-center">
-        <p className="label-gold">آگهی‌های ما</p>
+        <p className="label-gold">پروژه‌های ما</p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          ملک مورد نظرتان را پیدا کنید
+          پروژه‌های گروه ساختمانی سهند
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-white/60">
-          مجموعه خانه‌های استثنایی ما را مرور کنید — بر اساس مکان، نوع، قیمت
-          و موارد دیگر فیلتر کنید.
+          پروژه‌های شاخص در کرج، مهرشهر و البرز را مرور کنید — بر اساس منطقه،
+          نوع و قیمت فیلتر کنید.
         </p>
       </div>
     </section>
@@ -103,7 +103,7 @@ export default function Properties() {
                   type="search"
                   value={filters.query}
                   onChange={update("query")}
-                  placeholder="جست‌وجو بر اساس نام، شهر یا ایالت…"
+                  placeholder="جست‌وجو بر اساس نام یا منطقه…"
                   aria-label="جست‌وجوی ملک"
                   className="field ps-11"
                 />
@@ -117,7 +117,7 @@ export default function Properties() {
                 onChange={update("location")}
                 className={selectClass}
               >
-                <option value="all">همه مکان‌ها</option>
+                <option value="all">همه مناطق</option>
                 {locations.map((city) => (
                   <option key={city} value={city}>
                     {city}
@@ -150,10 +150,10 @@ export default function Properties() {
                 className={selectClass}
               >
                 <option value="all">هر قیمتی</option>
-                <option value="under-2">زیر ۲ میلیون دلار</option>
-                <option value="2-3.5">۲ تا ۳٫۵ میلیون دلار</option>
-                <option value="3.5-5">۳٫۵ تا ۵ میلیون دلار</option>
-                <option value="over-5">بالای ۵ میلیون دلار</option>
+                <option value="under-12">زیر ۱۲ میلیارد تومان</option>
+                <option value="12-15">۱۲ تا ۱۵ میلیارد تومان</option>
+                <option value="15-18">۱۵ تا ۱۸ میلیارد تومان</option>
+                <option value="over-18">بالای ۱۸ میلیارد تومان</option>
               </select>
               <label className="sr-only" htmlFor="filter-beds">
                 تعداد خواب
@@ -206,7 +206,7 @@ export default function Properties() {
             <p className="text-sm font-medium text-ink/60" aria-live="polite">
               نمایش{" "}
               <span className="font-bold text-navy">{faNum(results.length)}</span>{" "}
-              از {faNum(all.length)} ملک
+              از {faNum(all.length)} پروژه
             </p>
             {isFiltered && (
               <button
@@ -235,7 +235,7 @@ export default function Properties() {
                 <Search size={24} />
               </span>
               <h2 className="mt-6 text-xl font-bold text-navy">
-                ملکی با این شرایط پیدا نشد
+                پروژه‌ای با این شرایط پیدا نشد
               </h2>
               <p className="mt-2 max-w-sm text-sm text-ink/60">
                 دامنه قیمت را بازتر کنید یا فیلتری را بردارید تا نتایج

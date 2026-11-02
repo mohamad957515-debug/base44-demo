@@ -5,7 +5,7 @@ import About from "../sections/About";
 import FeaturedProperties from "../sections/FeaturedProperties";
 import Services from "../sections/Services";
 import WhyChoose from "../sections/WhyChoose";
-import Team from "../sections/Team";
+import Process from "../sections/Process";
 import CtaSection from "../sections/CtaSection";
 
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
       <FeaturedProperties />
       <Services />
       <WhyChoose />
-      <Team />
+      <Process />
       <CtaSection />
     </>
   );

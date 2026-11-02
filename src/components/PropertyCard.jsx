@@ -69,7 +69,7 @@ export default function PropertyCard({ property, size = "default" }) {
           </span>
           <span className="flex items-center gap-2">
             <Ruler size={16} className="text-gold" />{" "}
-            {formatNumber(property.sqft)} فوت مربع
+            {formatNumber(property.area)} متر مربع
           </span>
         </div>
       )}

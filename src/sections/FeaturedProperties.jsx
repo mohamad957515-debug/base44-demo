@@ -46,9 +46,9 @@ export default function FeaturedProperties() {
     <section id="featured" className="bg-ivory py-20 lg:py-28">
       <div className="container-x">
         <Reveal className="text-center">
-          <p className="label-gold">ویژه</p>
+          <p className="label-gold">پروژه‌ها</p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
-            ملک‌های شاخص
+            پروژه‌های شاخص
           </h2>
         </Reveal>
       </div>
@@ -59,7 +59,7 @@ export default function FeaturedProperties() {
           className="overflow-hidden"
           role="group"
           aria-roledescription="carousel"
-          aria-label="ملک‌های شاخص"
+          aria-label="پروژه‌های شاخص"
           tabIndex={0}
           onKeyDown={onKeydown}
         >
@@ -88,7 +88,7 @@ export default function FeaturedProperties() {
         <button
           type="button"
           onClick={scrollPrev}
-          aria-label="ملک‌های قبلی"
+          aria-label="پروژه قبلی"
           className="absolute right-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-all duration-300 hover:bg-navy hover:text-white lg:grid"
         >
           <ArrowRight size={18} />
@@ -96,7 +96,7 @@ export default function FeaturedProperties() {
         <button
           type="button"
           onClick={scrollNext}
-          aria-label="ملک‌های بعدی"
+          aria-label="پروژه بعدی"
           className="absolute left-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-all duration-300 hover:bg-navy hover:text-white lg:grid"
         >
           <ArrowLeft size={18} />
@@ -110,7 +110,7 @@ export default function FeaturedProperties() {
             key={p.id}
             type="button"
             onClick={() => emblaApi?.scrollTo(i)}
-            aria-label={`رفتن به ملک ${faNum(i + 1)}`}
+            aria-label={`رفتن به پروژه ${faNum(i + 1)}`}
             aria-current={i === selected}
             className={`h-1.5 rounded-full transition-all duration-300 ${
               i === selected ? "w-6 bg-navy" : "w-1.5 bg-navy/20"

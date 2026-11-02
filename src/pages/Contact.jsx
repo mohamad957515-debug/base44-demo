@@ -8,7 +8,7 @@ import {
   Send,
 } from "lucide-react";
 import Reveal from "../components/Reveal";
-import { BRAND, TEAM } from "../data/content";
+import { BRAND } from "../data/content";
 
 function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -17,17 +17,17 @@ function ContactForm() {
     return (
       <div className="flex flex-col items-center py-14 text-center">
         <CheckCircle2 size={48} className="text-gold" strokeWidth={1.5} />
-        <h3 className="mt-5 text-xl font-bold text-navy">پیام شما دریافت شد</h3>
+        <h3 className="mt-5 text-xl font-bold text-navy">درخواست شما ثبت شد</h3>
         <p className="mt-2 max-w-sm text-sm text-ink/60">
-          ممنون که با ما در تماس هستید — یکی از مشاوران ما ظرف یک روز کاری
-          پاسخ‌تان را می‌دهد.
+          ممنون که با سهند در تماس هستید — کارشناسان ما ظرف یک روز کاری
+          پاسخ‌تان را می‌دهند.
         </p>
         <button
           type="button"
           onClick={() => setSent(false)}
           className="btn-outline mt-7"
         >
-          ارسال پیام دیگر
+          ارسال درخواست دیگر
         </button>
       </div>
     );
@@ -58,38 +58,39 @@ function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="c-phone" className="mb-2 block text-sm font-semibold text-navy">
-            تلفن (اختیاری)
+            شماره تماس (اختیاری)
           </label>
           <input id="c-phone" type="tel" placeholder="۰۹۱۲ ۰۰۰ ۰۰۰۰" className="field" />
         </div>
         <div>
           <label htmlFor="c-subject" className="mb-2 block text-sm font-semibold text-navy">
-            موضوع علاقه‌مندی
+            نوع درخواست
           </label>
           <select id="c-subject" className="field cursor-pointer">
-            <option>خرید خانه</option>
-            <option>فروش ملک</option>
-            <option>فرصت‌های سرمایه‌گذاری</option>
-            <option>ارزش‌گذاری ملک</option>
-            <option>موضوعی دیگر</option>
+            <option>خرید</option>
+            <option>پیش‌خرید</option>
+            <option>سرمایه‌گذاری</option>
+            <option>مشارکت در ساخت</option>
+            <option>درخواست بازدید</option>
+            <option>سایر</option>
           </select>
         </div>
       </div>
       <div>
         <label htmlFor="c-message" className="mb-2 block text-sm font-semibold text-navy">
-          پیام
+          توضیحات کوتاه
         </label>
         <textarea
           id="c-message"
           rows={5}
           required
-          placeholder="کمی درباره چیزی که می‌خواهید برای ما بنویسید…"
+          placeholder="کمی درباره نیاز یا هدف ملکی خود بنویسید…"
           className="field resize-none"
         />
       </div>
       <button type="submit" className="btn-primary w-full sm:w-auto">
         <Send size={15} />
-        ارسال پیام
+        ارسال درخواست
       </button>
     </form>
   );
@@ -98,9 +99,15 @@ function ContactForm() {
 const INFO = [
   {
     icon: Phone,
-    label: "تلفن",
+    label: "تماس مستقیم",
     value: BRAND.phone,
     href: BRAND.phoneHref,
+  },
+  {
+    icon: Phone,
+    label: "تلفن دفتر",
+    value: BRAND.officePhone,
+    href: BRAND.officePhoneHref,
   },
   {
     icon: Mail,
@@ -110,7 +117,7 @@ const INFO = [
   },
   {
     icon: MapPin,
-    label: "دفتر",
+    label: "نشانی دفتر",
     value: `${BRAND.address}، ${BRAND.address2}`,
   },
   {
@@ -130,12 +137,12 @@ export default function Contact() {
         />
         <div className="container-x relative text-center">
           <p className="label-gold">تماس</p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            گفت‌وگو را آغاز کنیم
+          <h1 className="mx-auto mt-3 max-w-2xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+            برای یک تصمیم بزرگ، گفت‌وگویی دقیق شروع کنید
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-white/60">
-            خریدار، فروشنده یا سرمایه‌گذار — خوشحال می‌شویم صدایتان را
-            بشنویم.
+            برای خرید، پیش‌خرید، سرمایه‌گذاری ملکی یا مشارکت در ساخت با تیم
+            سهند در ارتباط باشید.
           </p>
         </div>
       </section>
@@ -169,30 +176,21 @@ export default function Contact() {
               </Reveal>
             ))}
 
-            <Reveal delay={240}>
+            <Reveal delay={320}>
               <div className="rounded-2xl bg-navy p-7 text-white shadow-card">
-                <p className="label-gold">با یک متخصص کار کنید</p>
+                <p className="label-gold">مشاوره اختصاصی</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/70">
-                  هر مشتری هورایزن از میان تیم ما یک مشاور اختصاصی می‌گیرد —
-                  بدون مرکز تماس، بدون واسطه.
+                  هر درخواست توسط کارشناسان سهند بررسی می‌شود — بدون مرکز
+                  تماس، بدون واسطه. برای تصمیم‌های ملکی بزرگ، گفت‌وگویی دقیق
+                  شروع کنید.
                 </p>
-                <div className="mt-5 flex items-center gap-3">
-                  <div className="flex -space-x-3">
-                    {TEAM.map((m) => (
-                      <img
-                        key={m.id}
-                        src={m.photo}
-                        alt={m.name}
-                        loading="lazy"
-                        className="h-10 w-10 rounded-full border-2 border-navy object-cover"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-xs text-white/60">
-                    با تیم ما در <span className="text-gold">صفحه خانه</span>{" "}
-                    آشنا شوید
-                  </p>
-                </div>
+                <a
+                  href={BRAND.phoneHref}
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold transition-colors hover:text-gold-light"
+                >
+                  <Phone size={14} />
+                  <span dir="ltr">{BRAND.phone}</span>
+                </a>
               </div>
             </Reveal>
           </div>
@@ -201,7 +199,7 @@ export default function Contact() {
           <Reveal delay={120} className="lg:col-span-7">
             <div className="rounded-2xl bg-white p-6 shadow-card sm:p-10">
               <h2 className="text-2xl font-bold tracking-tight text-navy">
-                برای ما پیام بگذارید
+                درخواست مشاوره
               </h2>
               <p className="mt-2 text-sm text-ink/60">
                 ظرف یک روز کاری پاسخ می‌دهیم.

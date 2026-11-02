@@ -16,18 +16,18 @@ export default function Logo({ light = true }) {
   return (
     <Link
       to="/"
-      aria-label="هورایزن پروپرتیز — صفحه اصلی"
+      aria-label="گروه ساختمانی سهند — صفحه اصلی"
       className="flex items-center gap-2.5"
     >
       <LogoMark className="h-8 w-8 shrink-0 text-gold" />
       <span
-        className={`text-[13px] font-bold leading-[1.15] tracking-[0.18em] sm:text-sm ${
+        className={`text-base font-bold leading-[1.2] ${
           light ? "text-white" : "text-navy"
         }`}
       >
-        HORIZON
-        <span className="block text-[9px] font-semibold tracking-[0.5em] text-gold sm:text-[10px]">
-          PROPERTIES
+        سهند
+        <span className="block text-[10px] font-semibold text-gold">
+          گروه ساختمانی
         </span>
       </span>
     </Link>

@@ -81,13 +81,13 @@ function StaticHero() {
       />
       <div className="container-x relative flex h-full flex-col items-center justify-center text-center">
         <h1 className="hero-in mx-auto max-w-4xl text-4xl font-bold leading-[1.25] text-white sm:text-5xl lg:text-[56px]">
-          خانه‌های استثنایی
+          گروه ساختمانی سهند
           <br />
-          و سرمایه‌گذاری‌های کم‌نظیر را کشف کنید
+          امضای پروژه‌های مسکونی لوکس در کرج
         </h1>
         <p className="hero-in-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-          ملک‌های لوکس در مکان‌های برتر. خانه رویایی یا سرمایه‌گذاری ایده‌آل را
-          با اطمینان پیدا کنید.
+          برای خریداران خاص، سرمایه‌گذاران ملکی و مالکان زمین؛ تجربه‌ای دقیق از
+          انتخاب موقعیت، طراحی، اجرا و تحویل — شفاف، خوش‌ساخت و قابل اعتماد.
         </p>
       </div>
     </section>
@@ -245,7 +245,7 @@ function ScrollHero() {
   return (
     <section
       ref={sectionRef}
-      aria-label="بخش آغازین — خانه‌های استثنایی و سرمایه‌گذاری‌های کم‌نظیر"
+      aria-label="بخش آغازین — گروه ساختمانی سهند، پروژه‌های مسکونی لوکس در کرج"
       className="relative bg-navy-950"
       style={{ height: `${scrollVh + 100}vh` }}
     >
@@ -290,13 +290,13 @@ function ScrollHero() {
           className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center"
         >
           <h1 className="hero-in mx-auto max-w-4xl text-4xl font-bold leading-[1.25] text-white drop-shadow-[0_2px_18px_rgba(6,15,26,0.45)] sm:text-5xl lg:text-[56px]">
-            خانه‌های استثنایی
+            گروه ساختمانی سهند
             <br />
-            و سرمایه‌گذاری‌های کم‌نظیر را کشف کنید
+            امضای پروژه‌های مسکونی لوکس در کرج
           </h1>
           <p className="hero-in-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/85 drop-shadow-[0_1px_10px_rgba(6,15,26,0.5)] sm:text-lg">
-            ملک‌های لوکس در مکان‌های برتر. خانه رویایی یا سرمایه‌گذاری ایده‌آل را
-            با اطمینان پیدا کنید.
+            برای خریداران خاص، سرمایه‌گذاران ملکی و مالکان زمین؛ تجربه‌ای دقیق از
+            انتخاب موقعیت، طراحی، اجرا و تحویل — شفاف، خوش‌ساخت و قابل اعتماد.
           </p>
         </div>
 

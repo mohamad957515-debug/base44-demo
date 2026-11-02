@@ -70,9 +70,9 @@ export default function Footer() {
         <div>
           <Logo light />
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/60">
-            از سال ۲۰۱۰، مردم را با خانه‌های استثنایی و سرمایه‌گذاری‌های
-            هوشمند به هم پیوند می‌زنیم. صداقت، شفافیت و رضایت مشتری — جوهره
-            هر کاری که می‌کنیم.
+            گروه ساختمانی سهند؛ ساخت و سرمایه‌گذاری ملکی لوکس در کرج، مهرشهر
+            و البرز. انتخاب موقعیت، طراحی، اجرا و تحویل — شفاف، خوش‌ساخت و
+            قابل اعتماد.
           </p>
           <div className="mt-6 flex gap-3">
             {SOCIALS.map((s) => {
@@ -123,6 +123,15 @@ export default function Footer() {
             </li>
             <li>
               <a
+                href={BRAND.officePhoneHref}
+                className="flex items-start gap-3 transition-colors hover:text-gold"
+              >
+                <Phone size={15} className="mt-0.5 shrink-0 text-gold" />
+                <span dir="ltr">{BRAND.officePhone}</span>
+              </a>
+            </li>
+            <li>
+              <a
                 href={BRAND.emailHref}
                 className="flex items-start gap-3 transition-colors hover:text-gold"
               >
@@ -144,7 +153,7 @@ export default function Footer() {
         <div>
           <h4 className="label-gold">خبرنامه</h4>
           <p className="mt-6 text-sm leading-relaxed text-white/60">
-            آگهی‌های جدید و تحلیل بازار، ماهانه در ایمیل شما.
+            پروژه‌های جدید و تحلیل بازار ملکی، ماهانه در ایمیل شما.
           </p>
           <div className="mt-5">
             <NewsletterForm />

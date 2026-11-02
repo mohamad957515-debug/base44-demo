@@ -26,7 +26,6 @@ import { faNum, formatNumber, formatPrice } from "../lib/format";
 import {
   fetchPropertyBySlug,
   fetchSimilarProperties,
-  resolveAgent,
 } from "../services/propertyService";
 
 /* ---------------- Modal form bodies ---------------- */
@@ -178,11 +177,10 @@ export default function PropertyDetail() {
 
   if (!property) return <NotFound />;
 
-  const agent = resolveAgent(property.agent);
   const specs = [
     { icon: BedDouble, value: faNum(property.beds), label: "خواب" },
     { icon: Bath, value: faNum(property.baths), label: "حمام" },
-    { icon: Ruler, value: formatNumber(property.sqft), label: "فوت مربع" },
+    { icon: Ruler, value: formatNumber(property.area), label: "متر مربع" },
     { icon: Calendar, value: faNum(property.yearBuilt), label: "سال ساخت" },
   ];
 
@@ -193,7 +191,7 @@ export default function PropertyDetail() {
         <nav aria-label="مسیر صفحه" className="flex items-center gap-1.5 text-xs font-medium text-ink/50">
           <Link to="/" className="transition-colors hover:text-navy">خانه</Link>
           <ChevronLeft size={12} />
-          <Link to="/properties" className="transition-colors hover:text-navy">املاک</Link>
+          <Link to="/properties" className="transition-colors hover:text-navy">پروژه‌ها</Link>
           <ChevronLeft size={12} />
           <span className="text-navy">{property.name}</span>
         </nav>
@@ -206,7 +204,7 @@ export default function PropertyDetail() {
             {/* Title & price */}
             <div className="mt-10 flex flex-wrap items-start justify-between gap-6">
               <div>
-                <p className="label-gold">{property.type} · برای فروش</p>
+                <p className="label-gold">{property.type} · فروش و پیش‌خرید</p>
                 <h1 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
                   {property.name}
                 </h1>
@@ -289,25 +287,23 @@ export default function PropertyDetail() {
           <aside className="lg:col-span-4">
             <div className="lg:sticky lg:top-24">
               <div className="rounded-2xl border border-navy/10 bg-white p-6 shadow-card lg:p-7">
-                {agent && (
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={agent.photo}
-                      alt={agent.name}
-                      className="h-16 w-16 rounded-full object-cover ring-2 ring-gold/40"
-                    />
-                    <div>
-                      <p className="font-bold text-navy">{agent.name}</p>
-                      <p className="text-xs font-medium text-gold">{agent.role}</p>
-                      <a
-                        href={BRAND.phoneHref}
-                        className="mt-1 flex items-center gap-1.5 text-xs text-ink/60 transition-colors hover:text-navy"
-                      >
-                        <Phone size={11} /> <span dir="ltr">{BRAND.phone}</span>
-                      </a>
-                    </div>
+                <div className="flex items-center gap-4">
+                  <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-navy text-gold">
+                    <Phone size={20} strokeWidth={1.8} />
+                  </span>
+                  <div>
+                    <p className="font-bold text-navy">{BRAND.name}</p>
+                    <p className="text-xs font-medium text-gold">
+                      مشاوره خرید، پیش‌خرید و مشارکت
+                    </p>
+                    <a
+                      href={BRAND.phoneHref}
+                      className="mt-1 flex items-center gap-1.5 text-xs text-ink/60 transition-colors hover:text-navy"
+                    >
+                      <Phone size={11} /> <span dir="ltr">{BRAND.phone}</span>
+                    </a>
                   </div>
-                )}
+                </div>
                 <div className="mt-6 space-y-3">
                   <button
                     type="button"
@@ -341,7 +337,7 @@ export default function PropertyDetail() {
           <div className="container-x">
             <Reveal>
               <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
-                ملک‌های مشابه
+                پروژه‌های مشابه
               </h2>
             </Reveal>
             <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
@@ -354,7 +350,7 @@ export default function PropertyDetail() {
             <div className="mt-12 text-center">
               <Link to="/properties" className="btn-outline">
                 <ArrowRight size={15} />
-                مرور همه ملک‌ها
+                مرور همه پروژه‌ها
               </Link>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Reveal from "../components/Reveal";
-import { unsplash } from "../lib/images";
+import { ABOUT_PHOTOS } from "../data/content";
 
 /** Editorial "Who We Are" section with an asymmetric image composition. */
 export default function About() {
@@ -11,15 +11,15 @@ export default function About() {
         <Reveal>
           <p className="label-gold">درباره ما</p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
-            ما که هستیم
+            امضای پروژه‌های لوکس در کرج
           </h2>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink/70">
-            در هورایزن پروپرتیز، مردم را با خانه‌های استثنایی و
-            سرمایه‌گذاری‌های هوشمند به هم پیوند می‌زنیم. صداقت، شفافیت و رضایت
-            مشتری، جوهره همه‌ی کاری است که می‌کنیم.
+            سهند فقط یک سازنده نیست؛ تیمی اجرایی و مشاوره‌ای است که زمین، سرمایه
+            یا نیاز سکونتی شما را به دارایی خوش‌ساخت و قابل اتکا تبدیل می‌کند.
+            تمرکز ما پروژه‌های سطح یک کرج، مهرشهر و البرز است.
           </p>
-          <Link to="/contact" className="btn-primary mt-9">
-            بیشتر بدانید
+          <Link to="/properties" className="btn-primary mt-9">
+            مشاهده پروژه‌ها
             <ArrowLeft size={16} />
           </Link>
         </Reveal>
@@ -29,16 +29,16 @@ export default function About() {
             <div className="grid grid-cols-5 items-end gap-4">
               <div className="col-span-3 overflow-hidden rounded-2xl">
                 <img
-                  src={unsplash("1613490493576-7fde63acd811", 900)}
-                  alt="خانه لوکس مدرن با استخر در غروب"
+                  src={ABOUT_PHOTOS.primary}
+                  alt="پروژه مسکونی لوکس گروه ساختمانی سهند در کرج"
                   loading="lazy"
                   className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               </div>
               <div className="col-span-2 overflow-hidden rounded-2xl pb-10">
                 <img
-                  src={unsplash("1570129477492-45c003edd2be", 600)}
-                  alt="اقامتگاه معماری مدرن در شب"
+                  src={ABOUT_PHOTOS.secondary}
+                  alt="نمای پروژه لادن گروه ساختمانی سهند"
                   loading="lazy"
                   className="aspect-[3/4] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -46,7 +46,7 @@ export default function About() {
             </div>
             <Link
               to="/properties"
-              aria-label="مشاهده ملک‌های ما"
+              aria-label="مشاهده پروژه‌های سهند"
               className="absolute bottom-2 left-6 grid h-14 w-14 place-items-center rounded-full bg-gold text-navy-950 shadow-card transition-all duration-300 hover:bg-navy hover:text-white sm:left-10"
             >
               <ArrowLeft

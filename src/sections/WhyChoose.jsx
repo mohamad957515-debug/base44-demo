@@ -12,15 +12,15 @@ export default function WhyChoose() {
       />
       <div className="container-x relative grid gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal>
-          <p className="label-gold">چرا هورایزن</p>
+          <p className="label-gold">چرا سهند</p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
             استانداردی بالاتر
             <br />
             از معمول
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-white/65">
-            ما موفقیت را در روابط چنددهه‌ای می‌سنجیم، نه در معاملات — قولی
-            آرام که در هر خانه‌ای نمایندگی می‌کنیم، پاس داشته می‌شود.
+            سهند پروژه را از زاویه سرمایه، سکونت، کیفیت و برند نهایی بررسی
+            می‌کند — و مسیر تصمیم را از اولین تماس تا تحویل شفاف نگه می‌دارد.
           </p>
           <ul className="mt-8 space-y-4">
             {WHY_POINTS.map((point) => (
