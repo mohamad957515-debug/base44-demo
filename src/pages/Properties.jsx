@@ -12,9 +12,6 @@ const INITIAL_FILTERS = {
   query: "",
   location: "all",
   type: "all",
-  price: "all",
-  beds: "all",
-  baths: "all",
   sort: "featured",
 };
 
@@ -33,8 +30,8 @@ function PageHeader() {
           پروژه‌های گروه ساختمانی سهند
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-white/60">
-          پروژه‌های شاخص در کرج، مهرشهر و البرز را مرور کنید — بر اساس منطقه،
-          نوع و قیمت فیلتر کنید.
+          پروژه‌های شاخص در کرج، مهرشهر و البرز را مرور کنید — بر اساس منطقه و
+          نوع پروژه فیلتر کنید.
         </p>
       </div>
     </section>
@@ -76,9 +73,6 @@ export default function Properties() {
     filters.query !== "" ||
     filters.location !== "all" ||
     filters.type !== "all" ||
-    filters.price !== "all" ||
-    filters.beds !== "all" ||
-    filters.baths !== "all" ||
     filters.sort !== "featured";
 
   return (
@@ -140,50 +134,6 @@ export default function Properties() {
                   </option>
                 ))}
               </select>
-              <label className="sr-only" htmlFor="filter-price">
-                دامنه قیمت
-              </label>
-              <select
-                id="filter-price"
-                value={filters.price}
-                onChange={update("price")}
-                className={selectClass}
-              >
-                <option value="all">هر قیمتی</option>
-                <option value="under-12">زیر ۱۲ میلیارد تومان</option>
-                <option value="12-15">۱۲ تا ۱۵ میلیارد تومان</option>
-                <option value="15-18">۱۵ تا ۱۸ میلیارد تومان</option>
-                <option value="over-18">بالای ۱۸ میلیارد تومان</option>
-              </select>
-              <label className="sr-only" htmlFor="filter-beds">
-                تعداد خواب
-              </label>
-              <select
-                id="filter-beds"
-                value={filters.beds}
-                onChange={update("beds")}
-                className={selectClass}
-              >
-                <option value="all">هر تعداد خواب</option>
-                <option value="3">۳ خواب و بیشتر</option>
-                <option value="4">۴ خواب و بیشتر</option>
-                <option value="5">۵ خواب و بیشتر</option>
-                <option value="6">۶ خواب و بیشتر</option>
-              </select>
-              <label className="sr-only" htmlFor="filter-baths">
-                تعداد حمام
-              </label>
-              <select
-                id="filter-baths"
-                value={filters.baths}
-                onChange={update("baths")}
-                className={selectClass}
-              >
-                <option value="all">هر تعداد حمام</option>
-                <option value="3">۳ حمام و بیشتر</option>
-                <option value="4">۴ حمام و بیشتر</option>
-                <option value="5">۵ حمام و بیشتر</option>
-              </select>
               <label className="sr-only" htmlFor="filter-sort">
                 مرتب‌سازی
               </label>
@@ -193,10 +143,8 @@ export default function Properties() {
                 onChange={update("sort")}
                 className={selectClass}
               >
-                <option value="featured">ابتدا ملک‌های ویژه</option>
-                <option value="price-asc">قیمت: کم به زیاد</option>
-                <option value="price-desc">قیمت: زیاد به کم</option>
-                <option value="newest">جدیدترین آگهی‌ها</option>
+                <option value="featured">ابتدا پروژه‌های شاخص</option>
+                <option value="newest">جدیدترین پروژه‌ها</option>
               </select>
             </div>
           </div>
@@ -238,8 +186,7 @@ export default function Properties() {
                 پروژه‌ای با این شرایط پیدا نشد
               </h2>
               <p className="mt-2 max-w-sm text-sm text-ink/60">
-                دامنه قیمت را بازتر کنید یا فیلتری را بردارید تا نتایج
-                بیشتری ببینید.
+                فیلترها را بردارید تا پروژه‌های بیشتری ببینید.
               </p>
               <button
                 type="button"

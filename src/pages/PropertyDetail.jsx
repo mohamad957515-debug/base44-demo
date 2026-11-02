@@ -3,103 +3,42 @@ import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRight,
-  Bath,
-  BedDouble,
   Calendar,
   CalendarDays,
-  Check,
   CheckCircle2,
   ChevronLeft,
-  Mail,
   MapPin,
   Phone,
-  Ruler,
 } from "lucide-react";
 import Gallery from "../components/Gallery";
 import Modal from "../components/Modal";
 import PropertyCard from "../components/PropertyCard";
 import FavoriteButton from "../components/FavoriteButton";
 import Reveal from "../components/Reveal";
+import ConsultationForm from "../components/ConsultationForm";
 import NotFound from "./NotFound";
 import { BRAND } from "../data/content";
-import { faNum, formatNumber, formatPrice } from "../lib/format";
 import {
   fetchPropertyBySlug,
   fetchSimilarProperties,
 } from "../services/propertyService";
 
-/* ---------------- Modal form bodies ---------------- */
-
-function SuccessMessage({ title, text, onDone }) {
-  return (
-    <div className="py-6 text-center">
-      <CheckCircle2 size={44} className="mx-auto text-gold" strokeWidth={1.5} />
-      <h4 className="mt-4 text-lg font-bold text-navy">{title}</h4>
-      <p className="mt-2 text-sm text-ink/60">{text}</p>
-      <button type="button" onClick={onDone} className="btn-primary mt-6">
-        انجام شد
-      </button>
-    </div>
-  );
-}
-
-function ContactAgentForm({ property, onClose }) {
-  const [sent, setSent] = useState(false);
-  if (sent)
-    return (
-      <SuccessMessage
-        title="پیام ارسال شد"
-        text={`ممنون — مشاور ما ظرف یک روز کاری درباره «${property.name}» پاسخ می‌دهد.`}
-        onDone={onClose}
-      />
-    );
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-      }}
-      className="space-y-4"
-    >
-      <div>
-        <label htmlFor="contact-name" className="sr-only">نام و نام خانوادگی</label>
-        <input id="contact-name" required placeholder="نام و نام خانوادگی" className="field" />
-      </div>
-      <div>
-        <label htmlFor="contact-email" className="sr-only">ایمیل</label>
-        <input id="contact-email" type="email" required placeholder="ایمیل شما" className="field" />
-      </div>
-      <div>
-        <label htmlFor="contact-phone" className="sr-only">تلفن (اختیاری)</label>
-        <input id="contact-phone" type="tel" placeholder="تلفن (اختیاری)" className="field" />
-      </div>
-      <div>
-        <label htmlFor="contact-msg" className="sr-only">پیام</label>
-        <textarea
-          id="contact-msg"
-          rows={4}
-          required
-          defaultValue={`سلام، درباره «${property.name}» (${formatPrice(property.price)}) اطلاعات بیشتری می‌خواهم.`}
-          className="field resize-none"
-        />
-      </div>
-      <button type="submit" className="btn-primary w-full">
-        <Mail size={15} />
-        ارسال پیام
-      </button>
-    </form>
-  );
-}
+/* ---------------- Modal form body ---------------- */
 
 function ViewingForm({ property, onClose }) {
   const [sent, setSent] = useState(false);
   if (sent)
     return (
-      <SuccessMessage
-        title="بازدید درخواست شد"
-        text={`به‌زودی تأیید بازدید از «${property.name}» را از طریق ایمیل دریافت می‌کنید.`}
-        onDone={onClose}
-      />
+      <div className="py-6 text-center">
+        <CheckCircle2 size={44} className="mx-auto text-gold" strokeWidth={1.5} />
+        <h4 className="mt-4 text-lg font-bold text-navy">شماره شما ثبت شد</h4>
+        <p className="mt-2 text-sm text-ink/60">
+          برای هماهنگی بازدید از «{property.name}» با شما تماس می‌گیریم.
+        </p>
+        <button type="button" onClick={onClose} className="btn-primary mt-6">
+          انجام شد
+        </button>
+      </div>
     );
   return (
     <form
@@ -114,8 +53,15 @@ function ViewingForm({ property, onClose }) {
         <input id="viewing-name" required placeholder="نام و نام خانوادگی" className="field" />
       </div>
       <div>
-        <label htmlFor="viewing-email" className="sr-only">ایمیل</label>
-        <input id="viewing-email" type="email" required placeholder="ایمیل شما" className="field" />
+        <label htmlFor="viewing-phone" className="sr-only">شماره تماس</label>
+        <input
+          id="viewing-phone"
+          type="tel"
+          inputMode="tel"
+          required
+          placeholder="شماره تماس"
+          className="field"
+        />
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div>
@@ -143,12 +89,16 @@ function ViewingForm({ property, onClose }) {
 
 /* ---------------- Page ---------------- */
 
+const scrollToConsultation = () =>
+  document
+    .getElementById("consultation")
+    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+
 export default function PropertyDetail() {
   const { slug } = useParams();
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [similar, setSimilar] = useState([]);
-  const [contactOpen, setContactOpen] = useState(false);
   const [viewingOpen, setViewingOpen] = useState(false);
 
   useEffect(() => {
@@ -177,13 +127,6 @@ export default function PropertyDetail() {
 
   if (!property) return <NotFound />;
 
-  const specs = [
-    { icon: BedDouble, value: faNum(property.beds), label: "خواب" },
-    { icon: Bath, value: faNum(property.baths), label: "حمام" },
-    { icon: Ruler, value: formatNumber(property.area), label: "متر مربع" },
-    { icon: Calendar, value: faNum(property.yearBuilt), label: "سال ساخت" },
-  ];
-
   return (
     <article className="bg-white">
       <div className="container-x pt-28 lg:pt-32">
@@ -196,15 +139,15 @@ export default function PropertyDetail() {
           <span className="text-navy">{property.name}</span>
         </nav>
 
-        <div className="mt-8 grid gap-12 pb-20 lg:grid-cols-12 lg:gap-10 lg:pb-28">
+        <div className="mt-8 grid gap-10 pb-20 lg:grid-cols-12 lg:gap-10 lg:pb-28">
           {/* Main column */}
           <div className="lg:col-span-8">
             <Gallery images={property.images} name={property.name} />
 
-            {/* Title & price */}
+            {/* Title */}
             <div className="mt-10 flex flex-wrap items-start justify-between gap-6">
               <div>
-                <p className="label-gold">{property.type} · فروش و پیش‌خرید</p>
+                <p className="label-gold">{property.type}</p>
                 <h1 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
                   {property.name}
                 </h1>
@@ -214,76 +157,56 @@ export default function PropertyDetail() {
                   {property.location.country}
                 </p>
               </div>
-              <div className="text-start sm:text-end">
-                <p className="text-3xl font-bold tracking-tight text-navy">
-                  {formatPrice(property.price)}
-                </p>
-                <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-navy/10 px-2 py-1">
-                  <FavoriteButton
-                    propertyId={property.id}
-                    variant="bordered"
-                    withLabel
-                  />
-                </div>
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-navy/10 px-2 py-1">
+                <FavoriteButton
+                  propertyId={property.id}
+                  variant="bordered"
+                  withLabel
+                />
               </div>
             </div>
 
-            {/* Specs */}
-            <div className="mt-10 grid grid-cols-2 overflow-hidden rounded-2xl border border-navy/10 sm:grid-cols-4">
-              {specs.map((spec) => (
-                <div
-                  key={spec.label}
-                  className="flex items-center gap-4 border-navy/10 p-5 odd:border-e sm:border-e sm:last:border-e-0 sm:odd:border-e"
-                >
-                  <spec.icon size={26} className="shrink-0 text-gold" strokeWidth={1.5} />
-                  <div>
-                    <p className="text-lg font-bold text-navy">{spec.value}</p>
-                    <p className="text-xs text-ink/50">{spec.label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Consultation form — replaces the published price */}
+            <div
+              id="consultation"
+              className="mt-10 scroll-mt-28 rounded-2xl border border-navy/10 bg-ivory p-6 shadow-card sm:p-8"
+            >
+              <p className="label-gold">بدون انتشار قیمت</p>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-navy">
+                ثبت درخواست مشاوره
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink/60">
+                برای دریافت شرایط، جزئیات واحدها و زمان‌بندی، شماره تماس خود
+                را ثبت کنید؛ کارشناسان سهند با شما تماس می‌گیرند.
+              </p>
 
-            {/* Description */}
-            <Reveal className="mt-12">
-              <h2 className="text-xl font-bold text-navy">درباره این ملک</h2>
-              {property.description.map((para) => (
-                <p key={para.slice(0, 24)} className="mt-4 leading-relaxed text-ink/70">
-                  {para}
-                </p>
-              ))}
-            </Reveal>
-
-            {/* Key features */}
-            <Reveal className="mt-12">
-              <h2 className="text-xl font-bold text-navy">ویژگی‌های کلیدی</h2>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                {property.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm text-ink/70">
-                    <Check size={16} className="mt-0.5 shrink-0 text-gold" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
-            {/* Amenities */}
-            <Reveal className="mt-12">
-              <h2 className="text-xl font-bold text-navy">امکانات</h2>
-              <div className="mt-5 flex flex-wrap gap-2.5">
-                {property.amenities.map((amenity) => (
-                  <span
-                    key={amenity}
-                    className="rounded-full border border-navy/10 bg-ivory px-4 py-2 text-xs font-semibold text-ink/70"
+              <div className="mt-6 grid gap-6 lg:grid-cols-2">
+                <ConsultationForm propertyName={property.name} />
+                <div className="flex flex-col justify-center rounded-xl bg-navy p-6 text-white">
+                  <p className="text-xs font-semibold text-gold">تماس مستقیم</p>
+                  <a
+                    href={BRAND.phoneHref}
+                    className="mt-2 flex items-center gap-2 text-xl font-bold transition-colors hover:text-gold-light"
                   >
-                    {amenity}
-                  </span>
-                ))}
+                    <Phone size={17} className="text-gold" />
+                    <span dir="ltr">{BRAND.phone}</span>
+                  </a>
+                  <a
+                    href={BRAND.officePhoneHref}
+                    className="mt-2 flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-white"
+                  >
+                    <Phone size={14} className="text-gold" />
+                    <span dir="ltr">{BRAND.officePhone}</span>
+                  </a>
+                  <p className="mt-5 text-xs leading-relaxed text-white/50">
+                    {BRAND.hours}
+                  </p>
+                </div>
               </div>
-            </Reveal>
+            </div>
           </div>
 
-          {/* Aside — agent */}
+          {/* Aside — consultation */}
           <aside className="lg:col-span-4">
             <div className="lg:sticky lg:top-24">
               <div className="rounded-2xl border border-navy/10 bg-white p-6 shadow-card lg:p-7">
@@ -307,11 +230,10 @@ export default function PropertyDetail() {
                 <div className="mt-6 space-y-3">
                   <button
                     type="button"
-                    onClick={() => setContactOpen(true)}
+                    onClick={scrollToConsultation}
                     className="btn-primary w-full"
                   >
-                    <Mail size={15} />
-                    تماس با مشاور
+                    ثبت درخواست مشاوره
                   </button>
                   <button
                     type="button"
@@ -359,25 +281,25 @@ export default function PropertyDetail() {
 
       {/* Mobile floating CTA */}
       <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-4 border-t border-navy/10 bg-white/95 px-5 py-3.5 backdrop-blur-md lg:hidden">
-        <div>
-          <p className="text-lg font-bold text-navy">{formatPrice(property.price)}</p>
-          <p className="text-[11px] text-ink/50">{property.location.city}، {property.location.state}</p>
-        </div>
+        <a
+          href={BRAND.phoneHref}
+          className="flex items-center gap-2 text-sm font-bold text-navy"
+        >
+          <Phone size={16} className="text-gold" />
+          <span dir="ltr">{BRAND.phone}</span>
+        </a>
         <button
           type="button"
-          onClick={() => setViewingOpen(true)}
-          className="btn-primary px-6 py-3"
+          onClick={scrollToConsultation}
+          className="btn-primary px-5 py-3"
         >
-          رزرو بازدید
+          درخواست مشاوره
           <ArrowLeft size={15} />
         </button>
       </div>
       <div className="h-[76px] lg:hidden" aria-hidden="true" />
 
       {/* Modals */}
-      <Modal open={contactOpen} onClose={() => setContactOpen(false)} title="گفت‌وگو با مشاور">
-        <ContactAgentForm property={property} onClose={() => setContactOpen(false)} />
-      </Modal>
       <Modal open={viewingOpen} onClose={() => setViewingOpen(false)} title="رزرو بازدید">
         <ViewingForm property={property} onClose={() => setViewingOpen(false)} />
       </Modal>

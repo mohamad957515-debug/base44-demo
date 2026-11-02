@@ -1,30 +1,35 @@
 import { Link } from "react-router-dom";
-import { Bath, BedDouble, MapPin, Ruler } from "lucide-react";
+import { MapPin, Phone, Send } from "lucide-react";
 import FavoriteButton from "./FavoriteButton";
-import { faNum, formatNumber, formatPriceShort } from "../lib/format";
+import { BRAND } from "../data/content";
 
 /**
  * Reusable property card. `size="large"` renders the editorial hero card
  * used for the first slide of the featured carousel.
+ * Prices and unit details are not published — the price slot carries the
+ * consultation phone number instead.
  */
 export default function PropertyCard({ property, size = "default" }) {
   const large = size === "large";
+  const detailPath = `/properties/${property.slug}`;
 
   return (
-    <Link
-      to={`/properties/${property.slug}`}
-      className="group block focus-visible:outline-offset-4"
-      aria-label={`${property.name} — ${formatPriceShort(property.price)}`}
-    >
+    <div className="group">
       <div className="relative overflow-hidden rounded-2xl bg-navy-100">
-        <img
-          src={property.images[0]}
-          alt={property.name}
-          loading="lazy"
-          className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
-            large ? "aspect-[16/10]" : "aspect-[4/3]"
-          }`}
-        />
+        <Link
+          to={detailPath}
+          aria-label={`مشاهده ${property.name}`}
+          className="block focus-visible:outline-offset-4"
+        >
+          <img
+            src={property.images[0]}
+            alt={property.name}
+            loading="lazy"
+            className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
+              large ? "aspect-[16/10]" : "aspect-[4/3]"
+            }`}
+          />
+        </Link>
         <span className="absolute start-4 top-4 rounded-full bg-navy-950/60 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
           {property.type}
         </span>
@@ -45,34 +50,39 @@ export default function PropertyCard({ property, size = "default" }) {
               large ? "text-2xl" : "text-lg"
             }`}
           >
-            {property.name}
+            <Link to={detailPath}>{property.name}</Link>
           </h3>
           <p className="mt-1.5 flex items-center gap-1.5 text-sm text-ink/60">
             <MapPin size={14} className="shrink-0 text-gold" />
             {property.location.city}، {property.location.state}
           </p>
         </div>
-        <p
-          className={`shrink-0 font-bold text-navy ${large ? "text-xl" : "text-lg"}`}
+        <a
+          href={BRAND.phoneHref}
+          className="shrink-0 text-end transition-colors hover:text-gold"
         >
-          {formatPriceShort(property.price)}
-        </p>
+          <span className="block text-[11px] font-medium text-ink/40">
+            مشاوره و بازدید
+          </span>
+          <span
+            dir="ltr"
+            className={`mt-1 flex items-center justify-end gap-1.5 font-bold text-navy ${
+              large ? "text-lg" : "text-sm"
+            }`}
+          >
+            <Phone size={13} className="text-gold" />
+            {BRAND.phone}
+          </span>
+        </a>
       </div>
 
-      {large && (
-        <div className="mt-5 flex flex-wrap items-center gap-x-7 gap-y-2 border-t border-ink/10 pt-4 text-sm text-ink/60">
-          <span className="flex items-center gap-2">
-            <BedDouble size={16} className="text-gold" /> {faNum(property.beds)} خواب
-          </span>
-          <span className="flex items-center gap-2">
-            <Bath size={16} className="text-gold" /> {faNum(property.baths)} حمام
-          </span>
-          <span className="flex items-center gap-2">
-            <Ruler size={16} className="text-gold" />{" "}
-            {formatNumber(property.area)} متر مربع
-          </span>
-        </div>
-      )}
-    </Link>
+      <Link
+        to={detailPath}
+        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors duration-300 hover:text-gold"
+      >
+        <Send size={14} className="text-gold" />
+        ثبت درخواست مشاوره
+      </Link>
+    </div>
   );
 }

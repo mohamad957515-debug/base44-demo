@@ -4,6 +4,8 @@ import { properties } from "../data/properties";
  * Access layer for property data. Currently resolves against the local
  * records in data/properties.js; the async signatures intentionally mirror
  * an API so this file can be swapped for real backend calls later.
+ * Prices and unit details are intentionally not part of the data model —
+ * each project leads to a consultation request instead.
  */
 
 const delay = (ms = 100) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -27,31 +29,15 @@ export async function fetchSimilarProperties(slug, limit = 3) {
     .map((p) => {
       let score = 0;
       if (p.type === current.type) score += 2;
-      if (p.location.state === current.location.state) score += 1;
-      score -= Math.abs(p.price - current.price) / 1_000_000_000;
+      if (p.location.city === current.location.city) score += 1;
       return { p, score };
     })
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => b.score - a.score || a.p.id - b.p.id);
   return scored.slice(0, limit).map((s) => s.p);
 }
 
 /** Pure client-side filter + sort used by the Properties page. */
 export function filterAndSortProperties(list, filters) {
-  const inPriceBand = (p, band) => {
-    switch (band) {
-      case "under-12":
-        return p.price < 12_000_000_000;
-      case "12-15":
-        return p.price >= 12_000_000_000 && p.price <= 15_000_000_000;
-      case "15-18":
-        return p.price > 15_000_000_000 && p.price <= 18_000_000_000;
-      case "over-18":
-        return p.price > 18_000_000_000;
-      default:
-        return true;
-    }
-  };
-
   const result = list.filter((p) => {
     if (filters.query) {
       const q = filters.query.trim().toLowerCase();
@@ -62,17 +48,10 @@ export function filterAndSortProperties(list, filters) {
     if (filters.location !== "all" && p.location.city !== filters.location)
       return false;
     if (filters.type !== "all" && p.type !== filters.type) return false;
-    if (!inPriceBand(p, filters.price)) return false;
-    if (filters.beds !== "all" && p.beds < Number(filters.beds)) return false;
-    if (filters.baths !== "all" && p.baths < Number(filters.baths)) return false;
     return true;
   });
 
   switch (filters.sort) {
-    case "price-asc":
-      return [...result].sort((a, b) => a.price - b.price);
-    case "price-desc":
-      return [...result].sort((a, b) => b.price - a.price);
     case "newest":
       return [...result].sort((a, b) =>
         (b.listedAt ?? "").localeCompare(a.listedAt ?? "")
