@@ -1,0 +1,16 @@
+/*
+Theme Name: Sahand Construction
+Theme URI: https://grohesahand.com
+Author: Sahand Construction Group
+Description: قالب اختصاصی گروه ساختمانی سهند — طراحی راست‌به‌چپ، فارسی و مبتنی بر Tailwind CSS. شامل صفحه اصلی، آرشیو پروژه‌ها، صفحه تک‌پروژه با فرم درخواست مشاوره و صفحه تماس.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: sahand
+Tags: rtl-language-support, custom-menu, featured-images, portfolio
+*/
+
+/* استایل واقعی قالب در assets/css/theme.css قرار دارد و از functions.php بارگذاری می‌شود. */
