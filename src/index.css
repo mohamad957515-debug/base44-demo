@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ————————————————————————————————————————————
+   Persian typography — Vazirmatn (display + body)
+   Latin editorial accent — Cormorant Garamond
+———————————————————————————————————————————— */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/Cormorant-Variable.woff2') format('woff2');
+  font-weight: 300 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/Cormorant-Italic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --paper: #f9f9f7;
+    --ink: #111111;
+    --gold: #a68966;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.85;
+    overflow-x: hidden;
+    font-feature-settings: 'ss01';
+  }
+
+  ::selection {
+    background: rgba(166, 137, 102, 0.22);
+    color: #111111;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-sans;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.28;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 1px solid #a68966;
+    outline-offset: 3px;
+  }
+
+  section[id] {
+    scroll-margin-top: 96px;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1ec;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d7d7d0;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #bdbdb4;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] font-medium tracking-[0.3em] text-stone;
+  }
+
+  .eyebrow-line {
+    @apply inline-block h-px w-8 bg-gold/70;
+  }
+
+  .latin {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .display {
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.16;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full text-sm font-medium transition-all duration-500 ease-silk;
+    padding: 0.95rem 1.9rem;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-paper hover:bg-gold;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-white hover:bg-gold-deep;
+  }
+
+  .btn-ghost {
+    @apply btn border border-ink/15 bg-transparent text-ink hover:border-ink/50 hover:bg-ink/[0.03];
+  }
+
+  .btn-light {
+    @apply btn border border-white/40 bg-white/10 text-white backdrop-blur-md hover:border-white hover:bg-white hover:text-ink;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-ink/10;
+  }
+
+  .stitch {
+    border-top: 1px dashed rgba(17, 17, 17, 0.16);
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-ink/10 bg-white/70 px-4 py-3 text-sm text-ink transition-colors duration-300 placeholder:text-stone/60 focus:border-gold focus:bg-white focus:outline-none;
+  }
+
+  .card-glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(26px) saturate(150%);
+    -webkit-backdrop-filter: blur(26px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 50px 120px -60px rgba(17, 17, 17, 0.45);
+  }
+
+  .img-cover {
+    @apply h-full w-full object-cover;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 46s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .float-slow {
+    animation: floaty 14s ease-in-out infinite;
+  }
+
+  .float-slower {
+    animation: floaty 22s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-2%, -3%, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .float-slow,
+  .float-slower {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
