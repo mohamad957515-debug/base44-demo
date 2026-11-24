@@ -1,2 +1,24 @@
-# base44-demo
-Demo repository for Base44 integration (contains a trivial example file)
+# سوری سیما · وب‌سایت سفر و هواپیمایی
+
+وب‌سایت فارسی (RTL) و لوکس آژانس مسافرتی و هواپیمایی سوری سیما.
+
+## اجرا
+
+```bash
+npm install
+npm run dev   # http://localhost:3000
+```
+
+ساخت نسخه نهایی: `npm run build`
+
+## ساختار
+
+- `src/components/` — بخش‌های صفحه (هیرو، جستجوی پرواز، مقاصد، تورها، نظرات، پرسش‌ها، فوتر و…)
+- `src/components/ui/` — اجزای مشترک مثل انیمیشن اسکرول و تقویم شمسی
+- `src/data/site.ts` — تمام محتوای متنی و تصاویر
+- `src/lib/` — هوک‌ها، تبدیل تاریخ شمسی و قالب‌بندی اعداد فارسی
+- `public/` — لوگو، ویدئوی هیرو و تصویر پوستر
+
+## فناوری
+
+React + TypeScript + Vite + Tailwind CSS · فونت Vazirmatn · ویدئو و تصاویر از Pexels و Unsplash

@@ -1,0 +1,259 @@
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand: #62c4ff;
+    --brand-deep: #269fe8;
+    --brand-light: #e8f7ff;
+    --ink: #172b3a;
+    --ink-soft: #667784;
+    --cloud-soft: #f6fbfe;
+    --cloud-gray: #eaf2f6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cloud-soft text-ink font-sans antialiased;
+    font-feature-settings: 'ss01' on, 'ss02' on;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(98, 196, 255, 0.35);
+    color: #10222f;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-extrabold tracking-tight;
+    line-height: 1.42;
+    text-wrap: balance;
+  }
+
+  p {
+    line-height: 1.95;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-deep);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0.45;
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[12.5px] font-semibold tracking-[0.14em] text-brand-deep;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-full px-6 py-3 text-[14.5px] font-semibold transition-all duration-300 ease-smooth;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-deep text-white shadow-[0_18px_40px_-18px_rgba(38,159,232,0.75)] hover:-translate-y-0.5 hover:bg-brand-ink hover:shadow-[0_24px_50px_-18px_rgba(38,159,232,0.85)];
+  }
+
+  .btn-light {
+    @apply btn bg-white text-ink shadow-[0_18px_40px_-22px_rgba(23,43,58,0.45)] hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-20px_rgba(23,43,58,0.5)];
+  }
+
+  .btn-glass {
+    @apply btn border border-white/35 bg-white/10 text-white backdrop-blur-md hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/20;
+  }
+
+  .btn-outline {
+    @apply btn border border-ink/15 bg-transparent text-ink hover:border-brand-deep/40 hover:bg-white hover:text-brand-ink;
+  }
+
+  .glass-dark {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+  }
+
+  .hairline {
+    @apply border-ink/[0.08];
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-[11.5px] font-medium text-ink-soft;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .hero-shadow {
+    text-shadow: 0 2px 30px rgba(4, 18, 31, 0.45), 0 1px 3px rgba(4, 18, 31, 0.3);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-img img {
+  transform: scale(1.12);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-img.is-visible img {
+  transform: scale(1);
+}
+
+/* ---------- hero entrance ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 36px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade 1.6s ease-out both;
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-70%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(140%);
+    opacity: 0;
+  }
+}
+
+.scroll-cue::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 45%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  animation: scroll-cue 2.4s ease-in-out infinite;
+}
+
+/* ---------- drifting clouds ---------- */
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-4%, 0, 0);
+  }
+}
+
+.cloud-drift {
+  animation: drift 26s ease-in-out infinite alternate;
+}
+
+/* ---------- airline marquee ---------- */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee 42s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-img img {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .rise,
+  .fade-in,
+  .cloud-drift,
+  .marquee-track,
+  .scroll-cue::after {
+    animation: none;
+  }
+}
